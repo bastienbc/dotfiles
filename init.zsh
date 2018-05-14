@@ -61,3 +61,10 @@ zplug "zsh-users/zsh-history-substring-search", defer:3, as:plugin
 zplug "zsh-users/zsh-syntax-highlighting", defer:2, as:plugin
 zplug-install-load
 revolver-loading-stop
+
+
+autoload -U compinit zrecompile
+for f in ${0:A:h}/plugins/*.zsh ${0:a} ${0:A:h}/*.zsh
+do
+	zrecompile -p $f && rm -f $f.zwc.old
+done
