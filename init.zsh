@@ -40,6 +40,7 @@ zplug "plugins/cp",  from:oh-my-zsh, as:plugin
 zplug "plugins/fasd",  from:oh-my-zsh, as:plugin
 zplug "plugins/git",  from:oh-my-zsh, as:plugin
 zplug "plugins/go",  from:oh-my-zsh, as:plugin
+zplug "plugins/history-substring-search", from:oh-my-zsh, defer:1, as:plugin
 zplug "plugins/jsontools",  from:oh-my-zsh, as:plugin
 zplug "plugins/perl",  from:oh-my-zsh, as:plugin
 zplug "plugins/python",  from:oh-my-zsh, as:plugin
@@ -57,7 +58,6 @@ zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zplug "zlsun/solarized-man", from:github, as:plugin
 zplug 'zsh-users/zsh-autosuggestions', as:plugin
 zplug 'zsh-users/zsh-completions', as:plugin
-zplug "zsh-users/zsh-history-substring-search", defer:3, as:plugin
 zplug "zsh-users/zsh-syntax-highlighting", defer:2, as:plugin
 zplug-install-load
 revolver-loading-stop
