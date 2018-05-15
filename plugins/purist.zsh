@@ -1,5 +1,15 @@
 #!/usr/bin/env zsh
 
+zstyle ':vcs_info:git*+set-message:*' hooks getGitTag
+
+function +vi-getGitTag() {
+	local tag
+	tag="$(git describe --tags 2> /dev/null)"
+	if [ $? -eq 0 ]; then
+		hook_com[branch]="${hook_com[branch]}${tag:+ <${tag}>}"
+	fi
+}
+
 prompt_pure_update_vim_prompt() {
 	zle || {
 		print "error: pure_update_vim_prompt must be called when zle is active"
