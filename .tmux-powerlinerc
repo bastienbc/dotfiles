@@ -9,17 +9,19 @@
 	# Use patched font symbols.
 	export TMUX_POWERLINE_PATCHED_FONT_IN_USE="true"
 	# The theme to use.
-    case $TMUX_POWERLINE_MODE in
+    : ${TMUX_POWERLINE_MODE:=$(tmux showenv TMUX_POWERLINE_MODE)}
+    TMUX_POWERLINE_MODE=${TMUX_POWERLINE_MODE#*=}
+    case ${TMUX_POWERLINE_MODE:-short} in
         short)
-            TMUX_POWERLINE_THEME=solarized-short
+            TMUX_POWERLINE_THEME=short
             ;;
         long)
-            TMUX_POWERLINE_THEME=solarized
+            TMUX_POWERLINE_THEME=long
             ;;
     esac
 	export TMUX_POWERLINE_THEME="${TMUX_POWERLINE_THEME:-solarized}"
 	# Overlay directory to look for themes. There you can put your own themes outside the repo. Fallback will still be the "themes" directory in the repo.
-	export TMUX_POWERLINE_DIR_USER_THEMES=""
+	export TMUX_POWERLINE_DIR_USER_THEMES="$HOME/.tmux/themes"
 	# Overlay directory to look for segments. There you can put your own segments outside the repo. Fallback will still be the "segments" directory in the repo.
 	export TMUX_POWERLINE_DIR_USER_SEGMENTS=""
 # }
