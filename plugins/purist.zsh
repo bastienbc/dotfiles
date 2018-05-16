@@ -16,9 +16,7 @@ prompt_pure_update_vim_prompt() {
 		return 1
 	}
 	local VNMODE='%F{magenta}[NORMAL]'
-	local VIMODE='%F{yellow}[INSERT]'
-	echo "$(date): $KEYMAP" >> /tmp/keymap_used
-	VIM_PROMPT="${${KEYMAP/vicmd/$VNMODE}/(main|viins)/$VIMODE}"
+	VIM_PROMPT="${${KEYMAP/vicmd/$VNMODE}/(main|viins)/}"
 	zle reset-prompt
 	zle -R
 }
@@ -31,7 +29,8 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 #prompt_newline='%666v'
-RPROMPT='${VIM_PROMPT} %F{white}%*'
+RPROMPT='%F{white}%*'
+prompt_newline='${VIM_PROMPT:+ $VIM_PROMPT }'$'\n%{\r%}'
 PROMPT='%(1j.[%j] .)'
 PROMPT+='%(12V.%F{242}%12v${PURE_PROMPT_SYMBOL:-❯}%f .)'
 PROMPT+='%(?.%F{cyan}.%F{red}${PURE_PROMPT_SYMBOL:-❯} $? %F{cyan})'
