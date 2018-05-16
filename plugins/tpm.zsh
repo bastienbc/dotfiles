@@ -27,3 +27,13 @@ do
 		ln -s "${0:A:h:h}/tmux/$theme.sh" "$HOME/.tmux/themes/$theme.sh" >& /dev/null
 	fi
 done
+
+mkdir -p "$HOME/.tmux/segments"
+
+for segment in tmux-mem-cpu-right
+do
+    if [ ! -f "$HOME/.tmux/segments/$segment.sh" ]
+    then
+        ln -s "${0:A:h:h}/tmux/$segment.sh" "$HOME/.tmux/segments/$segment.sh" >& /dev/null
+    fi
+done

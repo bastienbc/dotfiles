@@ -32,6 +32,7 @@ zplug "icetee/pv", \
 	use:'bin/pv', \
 	hook-build:'./configure prefix=$HOME/.local && make && make install'
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+zplug "holman/spark", as:command, use:spark
 zplug 'bastienbc/dotfiles', as:plugin, use:'install_deps.zsh', defer:2
 zplug 'bastienbc/dotfiles', as:plugin, use:'plugins/*.zsh', defer:1
 zplug "mafredri/zsh-async", from:github

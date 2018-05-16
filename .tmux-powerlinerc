@@ -19,11 +19,11 @@
             TMUX_POWERLINE_THEME=long
             ;;
     esac
-	export TMUX_POWERLINE_THEME="${TMUX_POWERLINE_THEME:-solarized}"
+	export TMUX_POWERLINE_THEME="${TMUX_POWERLINE_THEME:-short}"
 	# Overlay directory to look for themes. There you can put your own themes outside the repo. Fallback will still be the "themes" directory in the repo.
 	export TMUX_POWERLINE_DIR_USER_THEMES="$HOME/.tmux/themes"
 	# Overlay directory to look for segments. There you can put your own segments outside the repo. Fallback will still be the "segments" directory in the repo.
-	export TMUX_POWERLINE_DIR_USER_SEGMENTS=""
+	export TMUX_POWERLINE_DIR_USER_SEGMENTS="$HOME/.tmux/segments"
 # }
 
 # battery.sh {
