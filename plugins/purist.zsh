@@ -45,7 +45,7 @@ zle -N zle-keymap-select
 #prompt_newline='%666v'
 RPROMPT='%F{white}%*'
 prompt_newline='${VIM_PROMPT:+ $VIM_PROMPT }'$'\n%{\r%}'
-PROMPT='%(1j.[%j\uf04c] .)'
+PROMPT='%(1j.[%j '$'\uf04c''] .)'
 PROMPT+='%(12V.%F{242}%12v${PURE_PROMPT_SYMBOL:-❯}%f .)'
 PROMPT+='%(?.%F{cyan}.%F{red}${PURE_PROMPT_SYMBOL:-❯} $? %F{cyan})'
 PROMPT+='${PURE_PROMPT_SYMBOL:-❯}%f '
