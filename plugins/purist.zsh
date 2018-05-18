@@ -19,7 +19,16 @@ function +vi-getGitTag() {
 	stash="$(git stash list -q 2> /dev/null)"
 	if [ -n "$stash" ]
 	then
-		hook_com[branch]="${hook_com[branch]} $(wc -l <<< "$stash")"$'\ue78f'
+		hook_com[branch]="${hook_com[branch]} $(wc -l <<< "$stash") "$'\ue78f'
+	fi
+
+	local local_changes
+	local_changes="$(git rev-list @ '^@{upstream}' 2> /dev/null)"
+	if [ $? -eq 0 ]; then
+		local nb_changes="$(sed '/^\s*$/d' <<< "$local_changes" | wc -l)"
+		[ "$nb_changes" -ne 0 ] && hook_com[branch]="${hook_com[branch]} $nb_changes"$'\uf077'
+	else
+		hook_com[branch]="${hook_com[branch]} "$'\uf127'
 	fi
 	hook_com[branch]="${hook_com[branch]} "
 }
