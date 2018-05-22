@@ -22,3 +22,9 @@ then
 	install_tpm
 fi
 
+if ! has_tmux_powerline
+then
+	revolver-loading 'Installing tmux-powerline'
+	install_tmux_powerline
+fi
+

@@ -8,6 +8,18 @@ install_tpm() {
 	then
 		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	fi
+	$HOME/.tmux/plugins/tpm/bin/install_plugins
+}
+
+has_tmux_powerline() {
+	[ -d "$HOME/.tmux/tmux-powerline" ]
+}
+
+install_tmux_powerline() {
+	if ! has_tmux-powerline
+	then
+		git clone https://github.com/erikw/tmux-powerline ~/.tmux/tmux-powerline
+	fi
 }
 
 for conf in .tmux.conf .tmux-powerlinerc
