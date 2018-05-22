@@ -15,6 +15,9 @@ alias gpt="git push --tags"
 alias glt='git describe --tags $(git rev-list --tags --max-count=1)'
 alias glct="git describe --abbrev=0"
 alias glof="git log --follow -p --"
+alias gtc="git tag --sort=-creatordate"
+
+alias first="head -n 1"
 
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
