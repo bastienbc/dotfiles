@@ -16,6 +16,7 @@ alias glt='git describe --tags $(git rev-list --tags --max-count=1)'
 alias glct="git describe --abbrev=0"
 alias glof="git log --follow -p --"
 alias gtc="git tag --sort=-creatordate"
+alias gplt='git push origin $(gtc | first)'
 
 alias first="head -n 1"
 
