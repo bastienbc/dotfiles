@@ -29,8 +29,6 @@ revolver-loading-stop() {
 zplug-install-load () {
 	# Install plugins if there are plugins that have not been installed
 	revolver-loading 'Checking plugins'
-	zplug check --verbose
-	ret=$?
 	if type zplug >& /dev/null && ! zplug check --verbose; then
 		revolver-loading-stop
 		printf "Install? [y/N]: "

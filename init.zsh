@@ -41,7 +41,7 @@ zplug "plugins/cp",  from:oh-my-zsh, as:plugin
 zplug "plugins/fasd",  from:oh-my-zsh, as:plugin
 zplug "plugins/git",  from:oh-my-zsh, as:plugin
 zplug "plugins/go",  from:oh-my-zsh, as:plugin
-zplug "plugins/history-substring-search", from:oh-my-zsh, defer:1, as:plugin
+zplug "plugins/history-substring-search", from:oh-my-zsh, as:plugin, defer:1
 zplug "plugins/jsontools",  from:oh-my-zsh, as:plugin
 zplug "plugins/perl",  from:oh-my-zsh, as:plugin
 zplug "plugins/python",  from:oh-my-zsh, as:plugin
@@ -69,3 +69,5 @@ for f in ${0:A:h}/plugins/*.zsh ${0:a} ${0:A:h}/*.zsh
 do
 	zrecompile -p $f && rm -f $f.zwc.old
 done
+
+
