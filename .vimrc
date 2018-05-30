@@ -50,6 +50,8 @@ Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline.git'
 Plugin 'vim-airline/vim-airline-themes.git'
 Plugin 'xuyuanp/nerdtree-git-plugin'
+Plugin 'bagrat/vim-workspace'
+Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 syn on
 set syntax=on
@@ -102,12 +104,21 @@ if exists('$TMUX')
 		let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]12;#93a1a1\x7\<Esc>\<Esc>[2 q\<Esc>\\"
 		autocmd VimLeave * silent !echo -ne "\033]112\007"
 	endif
+	nnoremap [C :tabnext<CR>
+	nnoremap [D :tabprevious<CR>
 else
 	if &term =~ "xterm\\|rxvt"
 		let &t_SI = "\<Esc>]12;#af8700\x7\<Esc>[6 q"
 		let &t_SR = "\<Esc>]12;#d70000\x7\<Esc>[4 q"
 		let &t_EI = "\<Esc>]12;#93a1a1\007\<Esc>[2 q"
 		autocmd VimLeave * silent !echo -ne "\033]112\007"
+	endif
+	if &term =~ "rxvt"
+		nnoremap Oc :tabnext<CR>
+		nnoremap Od :tabprevious<CR>
+	elseif &term =~ "xterm"
+		nnoremap [1;5C :tabnext<CR>
+		nnoremap [1;5D :tabprevious<CR>
 	endif
 endif
 
@@ -124,13 +135,17 @@ nmap <F9> :TagbarToggle<CR>
 nmap <leader>tg :TagbarToggle<CR>
 nmap <leader>tr :NERDTreeToggle<CR>
 nmap <F8> :NERDTreeToggle<CR>
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-nnoremap <silent> <C-S-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <C-S-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+nnoremap <S-Tab> :WSPrev<CR>
+nnoremap <Tab> :WSNext<CR>
+#nnoremap <silent> <C-S-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+#nnoremap <silent> <C-S-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+noremap <leader>nt :WSTabNew<CR>
+noremap <Leader><Tab> :WSClose<CR>
+noremap <Leader><S-Tab> :WSClose!<CR>
 cnoreabbrev tbn tabnew
 cnoreabbrev tabv tab sview +setlocal\ nomodifiable
 cnoreabbrev vsb vertical belowright sbuffer
+cabbrev bonly WSBufOnly
 
 nmap <leader>fr :setlocal spell spelllang=fr_fr<CR>
 nmap <leader>o o<Esc>k
@@ -183,5 +198,10 @@ let g:tagbar_type_vbnet = {
 		\ 'd:call'
     \ ]
 	\ }
+
+let g:workspace_powerline_separators = 1
+let g:workspace_tab_icon = "\uf00a"
+let g:workspace_left_trunc_icon = "\uf0a8"
+let g:workspace_right_trunc_icon = "\uf0a9"
 
 
