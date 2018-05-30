@@ -137,8 +137,8 @@ nmap <leader>tr :NERDTreeToggle<CR>
 nmap <F8> :NERDTreeToggle<CR>
 nnoremap <S-Tab> :WSPrev<CR>
 nnoremap <Tab> :WSNext<CR>
-#nnoremap <silent> <C-S-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-#nnoremap <silent> <C-S-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+"nnoremap <silent> <C-S-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+"nnoremap <silent> <C-S-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 noremap <leader>nt :WSTabNew<CR>
 noremap <Leader><Tab> :WSClose<CR>
 noremap <Leader><S-Tab> :WSClose!<CR>

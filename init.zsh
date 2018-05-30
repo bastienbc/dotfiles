@@ -16,6 +16,10 @@ zplug 'sharkdp/fd', \
 	from:gh-r, \
 	as:command, \
 	rename-to:"fd"
+zplug 'sharkdp/bat', \
+	from:gh-r, \
+	as:command, \
+	rename-to:"bat"
 zplug 'BurntSushi/ripgrep', \
 	from:gh-r, \
 	as:command, \

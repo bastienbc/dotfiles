@@ -20,6 +20,8 @@ alias gplt='git push origin $(gtc | first)'
 
 alias first="head -n 1"
 
+alias ct='bat --style plain'
+
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
 alias yank='yank-cli'
