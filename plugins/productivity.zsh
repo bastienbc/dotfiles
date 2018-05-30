@@ -10,10 +10,13 @@ then
 	fi
 fi
 
-if [ ! -f "${HOME}/.rgrc" ]
-then
-	ln -s "${0:A:h:h}/.rgrc" "${HOME}/.rgrc" >& /dev/null
-fi
+function _gen_rgrc () {
+	local rgrc_content
+	rgrc_content="${(Xe)"$( < $1 )"}"
+	if [ -n "$(diff <(echo "${rgrc_content}") $HOME/.rgrc 2>/dev/null)" ]; then
+		cat <<< "${rgrc_content}" > $HOME/.rgrc
+	fi
+}
 
 if [ ! -f "${HOME}/.rgignore" ]
 then
