@@ -20,6 +20,10 @@ zplug 'sharkdp/bat', \
 	from:gh-r, \
 	as:command, \
 	rename-to:"bat"
+zplug 'svenstaro/genact', \
+	from:gh-r, \
+	as:command, \
+	rename-to:"genact"
 zplug 'BurntSushi/ripgrep', \
 	from:gh-r, \
 	as:command, \
