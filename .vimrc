@@ -135,8 +135,8 @@ nmap <F9> :TagbarToggle<CR>
 nmap <leader>tg :TagbarToggle<CR>
 nmap <leader>tr :NERDTreeToggle<CR>
 nmap <F8> :NERDTreeToggle<CR>
-nnoremap <S-Tab> :WSPrev<CR>
-nnoremap <Tab> :WSNext<CR>
+"nnoremap <C-S-Tab> :WSPrev<CR>
+"nnoremap <C-Tab> :WSNext<CR>
 "nnoremap <silent> <C-S-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 "nnoremap <silent> <C-S-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 noremap <leader>nt :WSTabNew<CR>
