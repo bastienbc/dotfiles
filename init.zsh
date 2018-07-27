@@ -12,10 +12,6 @@ zplug "peco/peco", as:command, from:gh-r
 zplug "molovo/revolver", \
   as:command, \
   use:revolver
-zplug 'sharkdp/fd', \
-	from:gh-r, \
-	as:command, \
-	rename-to:"fd"
 zplug 'sharkdp/bat', \
 	from:gh-r, \
 	as:command, \
@@ -39,6 +35,11 @@ zplug "icetee/pv", \
 	as:command, \
 	use:'bin/pv', \
 	hook-build:'./configure prefix=$HOME/.local && make && make install'
+zplug 'sharkdp/fd', \
+	as:command, \
+	use:'bin/fd', \
+	hook-build:'[ ! -f ./bin/fd ] && cargo install --root .', \
+	rename-to:"fd"
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "holman/spark", as:command, use:spark
 zplug 'bastienbc/dotfiles', as:plugin, use:'install_deps.zsh', defer:2
