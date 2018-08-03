@@ -58,7 +58,7 @@ expand-or-complete-with-dots() {
 }
 
 revolver-load-zplug() {
-	if [ ! -d "$HOME/.zplug" ]
+	if [ ! -d "$HOME/.zplug/repos/zplug/zplug" ]
 	then
 		revolver-loading 'Install zplug'
 		git clone https://github.com/zplug/zplug "$HOME/.zplug/repos/zplug/zplug"
