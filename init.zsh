@@ -21,7 +21,8 @@ zplug 'svenstaro/genact', \
 	as:command, \
 	rename-to:"genact"
 zplug 'BurntSushi/ripgrep', \
-	from:gh-r, \
+	use:'target/release/rg', \
+	hook-build:'cargo build --release', \
 	as:command, \
 	rename-to:"rg"
 zplug 'stedolan/jq', \
