@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+export PATH=$PATH:$HOME/.local/bin
 
 if ! has_powerline_symbols
 then
