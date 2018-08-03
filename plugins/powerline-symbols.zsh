@@ -5,10 +5,12 @@ install_powerline_symbols() {
 	if ! has_powerline_symbols
 	then
 		(
+		[ ! -d "$HOME/.local/share/fonts/" ] && mkdir -p "$HOME/.local/share/fonts/"
 		cd "$HOME/.local/share/fonts/"
 		wget "https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf"
 		wget "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
-		fc-cache -vf $(pwd)
+		fc-cache -vf "$(pwd)"
+		[ ! -d "$HOME/.config/fontconfig/conf.d/" ] && mkdir -p "$HOME/.config/fontconfig/conf.d/"
 		cd "$HOME/.config/fontconfig/conf.d/"
 		wget "https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf"
 		wget "https://github.com/ryanoasis/nerd-fonts/raw/master/10-nerd-font-symbols.conf"
