@@ -52,6 +52,7 @@ Plugin 'vim-airline/vim-airline-themes.git'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'bagrat/vim-workspace'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'cespare/vim-toml'
 call vundle#end()
 syn on
 set syntax=on
