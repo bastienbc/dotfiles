@@ -49,6 +49,10 @@ zplug 'clvv/fasd',\
    rename-to:'fasd'
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "holman/spark", as:command, use:spark
+zplug "bastienbc/autostore", as:command, use:autostore,\
+	hook-build:'perl ./Build.PL && ./Build && ./Build installdeps && ./Build install --install_base ${HOME}/perl5'
+zplug "bastienbc/series-rename", as:command, use:'series-rename',\
+	hook-build:'perl ./Build.PL && ./Build && ./Build installdeps && ./Build install --install_base ${HOME}/perl5'
 zplug 'bastienbc/dotfiles', as:plugin, use:'install_deps.zsh', defer:2
 zplug 'bastienbc/dotfiles', as:plugin, use:'plugins/*.zsh', defer:1
 zplug "mafredri/zsh-async", from:github
