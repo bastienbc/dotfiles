@@ -39,8 +39,14 @@ zplug "icetee/pv", \
 zplug 'sharkdp/fd', \
 	as:command, \
 	use:'bin/fd', \
-	hook-build:'[ ! -f ./bin/fd ] && cargo install --root .', \
+	hook-build:'cargo install --force --root .', \
 	rename-to:"fd"
+zplug 'clvv/fasd',\
+   as:command,\
+   from:github,\
+   use:'bin/fasd',\
+   hook-build:'PREFIX=$HOME make install',\
+   rename-to:'fasd'
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "holman/spark", as:command, use:spark
 zplug 'bastienbc/dotfiles', as:plugin, use:'install_deps.zsh', defer:2
@@ -56,7 +62,7 @@ zplug "plugins/jsontools",  from:oh-my-zsh, as:plugin
 zplug "plugins/perl",  from:oh-my-zsh, as:plugin
 zplug "plugins/python",  from:oh-my-zsh, as:plugin
 zplug "plugins/rsync",  from:oh-my-zsh, as:plugin
-zplug "plugins/thefuck",  from:oh-my-zsh, as:plugin
+zplug "plugins/thefuck",  from:oh-my-zsh, as:plugin, hook-build:"pip install --upgrade --user thefuck"
 zplug "plugins/tig",  from:oh-my-zsh, as:plugin
 zplug "plugins/tmux",  from:oh-my-zsh, as:plugin
 zplug "plugins/vi-mode",  from:oh-my-zsh, as:plugin

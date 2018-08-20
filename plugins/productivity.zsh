@@ -10,6 +10,11 @@ then
 	fi
 fi
 
+if [ ! -f "${HOME}/.local/bin/pip" ]
+then
+	curl https://bootstrap.pypa.io/get-pip.py | python3 - --user
+fi
+
 function _gen_rgrc () {
 	local rgrc_content
 	rgrc_content="${(Xe)"$( < $1 )"}"
