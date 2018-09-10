@@ -53,6 +53,8 @@ Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'bagrat/vim-workspace'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'cespare/vim-toml'
+Plugin 'gu-fan/InstantRst'
+Plugin 'gu-fan/riv.vim'
 call vundle#end()
 syn on
 set syntax=on
