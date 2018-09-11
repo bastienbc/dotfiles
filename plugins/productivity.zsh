@@ -76,3 +76,8 @@ function ff() {
 		"$@" -type d -print0 | fzf${TMUX:+-tmux} -0 +m -1 --read0 ))
 	[ -n "$out" ] && cd $out
 }
+
+function qarray() {
+	local sep="$1";shift
+	eval 'echo "${(j:'"$sep"':)${(qq)@## *}}"'
+}
