@@ -148,6 +148,7 @@ noremap <Leader><S-Tab> :WSClose!<CR>
 cnoreabbrev tbn tabnew
 cnoreabbrev tabv tab sview +setlocal\ nomodifiable
 cnoreabbrev vsb vertical belowright sbuffer
+cnoreabbrev bv belowright vsplit
 cabbrev bonly WSBufOnly
 
 nmap <leader>fr :setlocal spell spelllang=fr_fr<CR>

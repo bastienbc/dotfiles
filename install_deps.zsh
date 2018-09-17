@@ -28,6 +28,11 @@ then
 	install_tmux_powerline
 fi
 
+if ! has_xfce_theme
+then
+	revolver-loading 'Installing xfce theme'
+	install_xfce_theme
+fi
 
 if zplug check zsh-users/zsh-autosuggestions; then
 	ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
