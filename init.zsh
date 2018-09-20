@@ -47,6 +47,12 @@ zplug 'clvv/fasd',\
    use:'bin/fasd',\
    hook-build:'PREFIX=$HOME make install',\
    rename-to:'fasd'
+zplug 'motemen/ghq',\
+   as:command,\
+   from:github,\
+   use:'ghq',\
+   hook-build:'make deps && make build',\
+   rename-to:'ghq'
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "holman/spark", as:command, use:spark
 zplug "bastienbc/autostore", as:command, use:autostore,\
