@@ -45,3 +45,19 @@ if zplug check "plugins/history-substring-search"; then
 	bindkey '^[OA' history-substring-search-up
 	bindkey '^[OA' history-substring-search-down
 fi
+
+if ! command -v chronic >& /dev/null ; then
+	echo "chronic should be installed. Ususally moreutils package."
+fi
+
+if ! command -v cpan >& /dev/null || ! perl -MModule::Build -e 1 >& /dev/null ; then
+	echo "Package to build perl module are missing. Needs cpan & Module::Build."
+fi
+
+if ! command -v cargo >& /dev/null ; then
+	echo "Need cargo to build rust source"
+fi
+
+if ! command -v go >& /dev/null ; then
+	echo "Need golang package to buil go source"
+fi
