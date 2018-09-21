@@ -83,5 +83,5 @@ function qarray() {
 }
 
 function ghq_update() {
-	ghq list -e -p | xargs -i{} -n 1 -P 4 -r git -C {} pull --ff-only
+	ghq list -e -p | xargs -i{} -n 1 -P 4 -r -- chronic bash -c '(echo -n {} ; git -C {} pull --ff-only)'
 }
