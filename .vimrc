@@ -152,6 +152,7 @@ cnoreabbrev bv belowright vsplit
 cabbrev bonly WSBufOnly
 
 nmap <leader>fr :setlocal spell spelllang=fr_fr<CR>
+nmap <leader>en :setlocal spell spelllang=en_us<CR>
 nmap <leader>o o<Esc>k
 nmap <leader>O O<Esc>j
 nmap <leader>hs :set hlsearch!<CR>

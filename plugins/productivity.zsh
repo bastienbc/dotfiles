@@ -81,3 +81,7 @@ function qarray() {
 	local sep="$1";shift
 	eval 'echo "${(j:'"$sep"':)${(qq)@## *}}"'
 }
+
+function ghq_update() {
+	ghq list -e -p | xargs -i{} -n 1 -P 4 -r git -C {} pull --ff-only
+}
