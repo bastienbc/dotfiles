@@ -2,10 +2,15 @@
 
 alias noproxy="env http_proxy='' https_proxy='' ftp_proxy=''"
 
+export SSH_ASKPASS=""
+export EDITOR="vim"
 export ZSHRC="${HOME}/.zshrc"
 export VIMRC="${HOME}/.vimrc"
 alias zshrc="${EDITOR} ${ZSHRC} ; src"
 alias szshrc="source ${HOME}/.zshrc"
+if command -v gvim >& /dev/null; then
+	alias vim="gvim -v"
+fi
 alias vimrc="${EDITOR} ${HOME}/.vimrc"
 
 
