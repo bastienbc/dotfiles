@@ -38,8 +38,8 @@ zplug "icetee/pv", \
 	hook-build:'./configure prefix=$HOME/.local && make && make install'
 zplug 'sharkdp/fd', \
 	as:command, \
-	use:'bin/fd', \
-	hook-build:'cargo install --force --root .', \
+	use:'target/release/fd', \
+	hook-build:'cargo build', \
 	rename-to:"fd"
 zplug 'clvv/fasd',\
    as:command,\
