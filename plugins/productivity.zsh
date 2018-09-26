@@ -82,6 +82,6 @@ function qarray() {
 	eval 'echo "${(j:'"$sep"':)${(qq)@## *}}"'
 }
 
-function ghq_update() {
+function ghq-update() {
 	ghq list -e -p | xargs -i{} -n 1 -P 4 -r -- chronic bash -c '(echo -n {} ; git -C {} pull --ff-only)'
 }
