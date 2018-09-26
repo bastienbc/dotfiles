@@ -34,6 +34,13 @@ then
 	install_xfce_theme
 fi
 
+if ! has_rust
+then
+	revolver-loading 'Installing rust'
+	install_rust
+	PATH=${PATH}:${HOME}/.cargo/bin
+fi
+
 if zplug check zsh-users/zsh-autosuggestions; then
 	ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 	ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
@@ -52,10 +59,6 @@ fi
 
 if ! command -v cpan >& /dev/null || ! perl -MModule::Build -e 1 >& /dev/null ; then
 	echo "Package to build perl module are missing. Needs cpan & Module::Build."
-fi
-
-if ! command -v cargo >& /dev/null ; then
-	echo "Need cargo to build rust source"
 fi
 
 if ! command -v go >& /dev/null ; then
