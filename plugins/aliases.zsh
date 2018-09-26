@@ -22,6 +22,7 @@ alias glct="git describe --abbrev=0"
 alias glof="git log --follow -p --"
 alias gtc="git tag --sort=-creatordate"
 alias gplt='git push origin $(gtc | first)'
+alias gff='git pull --ff-only'
 alias imgv='w3m -o ext_image_viewer=0'
 
 alias first="head -n 1"
