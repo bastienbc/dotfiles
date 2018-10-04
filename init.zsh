@@ -63,6 +63,7 @@ zplug 'bastienbc/dotfiles', as:plugin, use:'install_deps.zsh', defer:2
 zplug 'bastienbc/dotfiles', as:plugin, use:'plugins/*.zsh', defer:1
 zplug "mafredri/zsh-async", from:github
 zplug "plugins/colorized",  from:oh-my-zsh, as:plugin
+zplug "supercrabtree/k", from:github, as:plugin
 zplug "plugins/cp",  from:oh-my-zsh, as:plugin
 zplug "plugins/fasd",  from:oh-my-zsh, as:plugin
 zplug "plugins/git",  from:oh-my-zsh, as:plugin
