@@ -85,3 +85,10 @@ function qarray() {
 function ghq-update() {
 	ghq list -e -p | xargs -i{} -n 1 -P 4 -r -- chronic bash -c '(echo -n {} ; git -C {} pull --ff-only)'
 }
+
+function xsels() {
+	local P=$(xsel -p -o)
+	local C=$(xsel -b -o)
+	xsel -b -i <<<"$P"
+	xsel -p -i <<<"$C"
+}
