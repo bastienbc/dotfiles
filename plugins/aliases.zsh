@@ -28,6 +28,7 @@ alias imgv='w3m -o ext_image_viewer=0'
 alias first="head -n 1"
 
 alias ct='bat --style plain'
+alias ka='k -Ah'
 
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
