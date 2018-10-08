@@ -9,52 +9,55 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter.git'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-bufferline.git'
-Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'amiorin/vim-project'                   " Project listing with location and callbacks !
+Plugin 'bagrat/vim-workspace'                  " Better tabline
+Plugin 'bling/vim-bufferline.git'              " List buffers
+Plugin 'bronson/vim-trailing-whitespace'       " I want to see trailing whitespace
+Plugin 'cespare/vim-toml'                      " TOML support
 Plugin 'chrisbra/csv.vim.git'
-Plugin 'ervandew/screen'
+Plugin 'ervandew/screen'                       " Start shell in new tmux pane with ,sh
 Plugin 'fatih/vim-go.git'
 Plugin 'glench/vim-jinja2-syntax'
-Plugin 'godlygeek/tabular.git'
+Plugin 'godlygeek/tabular.git'                 " Format text
+Plugin 'gu-fan/InstantRst'
+Plugin 'gu-fan/riv.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'jceb/vim-orgmode'
-Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/goyo.vim'                     " No distraction :Goyo (bugs)
+Plugin 'justinmk/vim-sneak'                    " Two letters f: 'sxx'
 Plugin 'KabbAmine/zeavim.vim'
-Plugin 'lilydjwg/colorizer'
-Plugin 'majutsushi/tagbar.git'
-Plugin 'mhinz/vim-signify.git'
+Plugin 'lilydjwg/colorizer'                    " Colorize #fea8a1
+Plugin 'majutsushi/tagbar.git'                 " List tags of current file
+Plugin 'mhinz/vim-signify.git'                 " Show git diff in file
 Plugin 'mileszs/ack.vim.git'
 Plugin 'mkitt/tabline.vim.git'
-Plugin 'moll/vim-bbye'
-Plugin 'mtth/scratch.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'osyo-manga/vim-over'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'scrooloose/syntastic'
-Plugin 'sheerun/vim-polyglot.git'
-Plugin 'Shougo/denite.nvim'
-Plugin 'sickill/vim-pasta'
+Plugin 'moll/vim-bbye'                         " ,q to close buffer without changing layout
+Plugin 'mtth/scratch.vim'                      " 'gs' to open scratch panel/window
+Plugin 'nathanaelkane/vim-indent-guides'       " indent guides
+Plugin 'osyo-manga/vim-over'                   " substitute preview
+Plugin 'plasticboy/vim-markdown'               " md support
+Plugin 'romainl/vim-cool'                      " hlsearch if searching
+Plugin 'ryanoasis/vim-devicons'                " Nice icons
+Plugin 'scrooloose/nerdcommenter.git'          " Comment your code with 's'
+Plugin 'scrooloose/nerdtree.git'               " Current folder tree
+Plugin 'scrooloose/syntastic'                  " Error checker and more
+Plugin 'sheerun/vim-polyglot.git'              " Lot of language support
+Plugin 'Shougo/denite.nvim'                    " Fuzzy finder (not used)
+Plugin 'sickill/vim-pasta'                     " Better paste
 Plugin 'SirVer/ultisnips'
 Plugin 'terryma/vim-multiple-cursors.git'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'tpope/vim-fugitive.git'
-Plugin 'tpope/vim-rsi'
-Plugin 'tpope/vim-surround'
-Plugin 'unblevable/quick-scope'
+Plugin 'tpope/vim-fugitive.git'                " Git command integretion :Gstatus
+Plugin 'tpope/vim-rsi'                         " Readline key bindings! C-a C-k C-e etc
+Plugin 'tpope/vim-speeddating.git'             " Increase or decrease dates
+Plugin 'tpope/vim-surround'                    " Surround text with quotes or brackets or... use cs
+Plugin 'unblevable/quick-scope'                " Show next or previous charcter to jump using f and co
 Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline.git'
 Plugin 'vim-airline/vim-airline-themes.git'
-Plugin 'xuyuanp/nerdtree-git-plugin'
-Plugin 'bagrat/vim-workspace'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'cespare/vim-toml'
-Plugin 'gu-fan/InstantRst'
-Plugin 'gu-fan/riv.vim'
+Plugin 'xuyuanp/nerdtree-git-plugin'           " Git status in nerdtree
 call vundle#end()
 syn on
 set syntax=on
@@ -95,7 +98,7 @@ augroup readonly
 	autocmd!
 	autocmd BufReadPost * call Enable_hlsearch()
 augroup end
-"set hlsearch
+set hlsearch
 
 set foldmethod=syntax
 
@@ -209,6 +212,9 @@ let g:workspace_tab_icon = "\uf00a"
 let g:workspace_left_trunc_icon = "\uf0a8"
 let g:workspace_right_trunc_icon = "\uf0a9"
 
-:set backspace=indent,eol,start
-:set t_kb=
-:set t_kD=[3~
+set backspace=indent,eol,start
+set t_kb=
+set t_kD=[3~
+
+nmap <leader>sh :ScreenShell<CR>
+nmap <leader>ov :OverCommandLine<CR>
