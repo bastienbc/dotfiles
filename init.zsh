@@ -39,8 +39,13 @@ zplug "icetee/pv", \
 zplug 'sharkdp/fd', \
 	as:command, \
 	use:'target/release/fd', \
-	hook-build:'cargo build', \
+	hook-build:'cargo build --release', \
 	rename-to:"fd"
+zplug 'watchexec/watchexec', \
+	as:command, \
+	use:'target/release/watchexec', \
+	hook-build:'cargo build --release', \
+	rename-to:"watchx"
 zplug 'clvv/fasd',\
    as:command,\
    from:github,\

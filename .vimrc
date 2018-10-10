@@ -15,15 +15,18 @@ Plugin 'bagrat/vim-workspace'                  " Better tabline
 Plugin 'bling/vim-bufferline.git'              " List buffers
 Plugin 'bronson/vim-trailing-whitespace'       " I want to see trailing whitespace
 Plugin 'cespare/vim-toml'                      " TOML support
-Plugin 'chrisbra/csv.vim.git'
+Plugin 'chrisbra/csv.vim.git'                  " CSV tools
+Plugin 'easymotion/vim-easymotion'             " Use ,,s or ,,f to access esaymotion
 Plugin 'ervandew/screen'                       " Start shell in new tmux pane with ,sh
-Plugin 'fatih/vim-go.git'
-Plugin 'glench/vim-jinja2-syntax'
+Plugin 'fatih/vim-go.git'                      " go support
+Plugin 'glench/vim-jinja2-syntax'              " jinja support
 Plugin 'godlygeek/tabular.git'                 " Format text
-Plugin 'gu-fan/InstantRst'
-Plugin 'gu-fan/riv.vim'
-Plugin 'honza/vim-snippets'
-Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'gu-fan/InstantRst'                     " supposedly start rst view in navigator...
+Plugin 'gu-fan/riv.vim'                        " rst support
+Plugin 'haya14busa/incsearch.vim'              " Clear incremental search '/'
+Plugin 'haya14busa/incsearch-easymotion.vim'   " Use EasyMotion with incsearch results
+Plugin 'honza/vim-snippets'                    " snippets
+Plugin 'hynek/vim-python-pep8-indent'          " python indent
 Plugin 'jceb/vim-orgmode'
 Plugin 'junegunn/goyo.vim'                     " No distraction :Goyo (bugs)
 Plugin 'justinmk/vim-sneak'                    " Two letters f: 'sxx'
