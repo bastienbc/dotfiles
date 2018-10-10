@@ -28,14 +28,16 @@ then
 	ln -s "${0:A:h:h}/.rgignore" "${HOME}/.rgignore" >& /dev/null
 fi
 
+function vimin0 () {
+	xargs -0 -r sh -c 'vim '"$@"' "$@" < /dev/tty' vim
+}
+
 function vimin () {
-	xargs -0 sh -c 'vim '"$@"' "$@" < /dev/tty' vim
+	xargs -r sh -c 'vim '"$@"' "$@" < /dev/tty' vim
 }
 
 function vimg () {
-	local RG_FILES
-	IFS=$'\n' RG_FILES=($(rg -l -0 "$@" | fzf${TMUX:+-tmux} -m -0 -1 --read0))
-	[ -n "${RG_FILES}" ] && vim "${RG_FILES[@]}"
+	rg -l -0 "$@" | fzf${TMUX:+-tmux} -m -0 -1 --read0 --print0 | vimin0
 }
 
 function wdl () {
@@ -44,15 +46,7 @@ function wdl () {
 }
 
 function vimf() {
-	local out
-	local folder="$1"
-	[ "$#" -gt 0 ] && shift
-	: ${folder:=.}
-	IFS=$'\n' out=($(find "$folder" \( \
-		-path '*/.git' -o \
-		-path '*/.svn' \) -prune -o \
-		"$@" -print0 | fzf${TMUX:+-tmux} -0 -m -1 --read0 ))
-	[ -n "$out" ] && vim "${out[@]}"
+	fd -t f -0 "$@" | fzf${TMUX:+-tmux} -0 -m -1 --read0 --print0 | vimin0
 }
 
 function vimp() {
@@ -61,19 +55,13 @@ function vimp() {
 
 function cf() {
 	local out
-	IFS=$'\n' out=($(find . \( \
-		-path '*/.git' -o \
-		-path '*/.svn' \) -prune -o \
-		"$@" -type f -print0 | fzf${TMUX:+-tmux} -0 +m -1 --read0 ))
+	IFS=$'\n' out=($(fd -0 -t f "$@" | fzf${TMUX:+-tmux} -0 +m -1 --read0 ))
 	[ -n "$out" ] && cd $(dirname $out)
 }
 
 function ff() {
 	local out
-	IFS=$'\n' out=($(find . \( \
-		-path '*/.git' -o \
-		-path '*/.svn' \) -prune -o \
-		"$@" -type d -print0 | fzf${TMUX:+-tmux} -0 +m -1 --read0 ))
+	IFS=$'\n' out=($(fd -0 -t d "$@" | fzf${TMUX:+-tmux} -0 +m -1 --read0 ))
 	[ -n "$out" ] && cd $out
 }
 
