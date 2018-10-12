@@ -91,6 +91,9 @@ zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zplug "zlsun/solarized-man", from:github, as:plugin
 zplug 'zsh-users/zsh-autosuggestions', as:plugin
 zplug 'zsh-users/zsh-completions', as:plugin
+zplug 'MichaelAquilina/zsh-emojis', as:plugin
+zplug "b4b4r07/emoji-cli", as:plugin
+zplug 'mrowa44/emojify', as:command, use:emojify
 zplug "zsh-users/zsh-syntax-highlighting", defer:2, as:plugin
 zplug-install-load
 revolver-loading-stop
