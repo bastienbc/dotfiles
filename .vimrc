@@ -23,8 +23,8 @@ Plugin 'glench/vim-jinja2-syntax'              " jinja support
 Plugin 'godlygeek/tabular.git'                 " Format text
 Plugin 'gu-fan/InstantRst'                     " supposedly start rst view in navigator...
 Plugin 'gu-fan/riv.vim'                        " rst support
-Plugin 'haya14busa/incsearch.vim'              " Clear incremental search '/'
 Plugin 'haya14busa/incsearch-easymotion.vim'   " Use EasyMotion with incsearch results
+Plugin 'haya14busa/incsearch.vim'              " Clear incremental search '/'
 Plugin 'honza/vim-snippets'                    " snippets
 Plugin 'hynek/vim-python-pep8-indent'          " python indent
 Plugin 'jceb/vim-orgmode'
@@ -50,12 +50,14 @@ Plugin 'sheerun/vim-polyglot.git'              " Lot of language support
 Plugin 'Shougo/denite.nvim'                    " Fuzzy finder (not used)
 Plugin 'sickill/vim-pasta'                     " Better paste
 Plugin 'SirVer/ultisnips'
+Plugin 'tangledhelix/vim-kickstart'            " kickstart syntax
 Plugin 'terryma/vim-multiple-cursors.git'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'tpope/vim-fugitive.git'                " Git command integretion :Gstatus
 Plugin 'tpope/vim-rsi'                         " Readline key bindings! C-a C-k C-e etc
 Plugin 'tpope/vim-speeddating.git'             " Increase or decrease dates
 Plugin 'tpope/vim-surround'                    " Surround text with quotes or brackets or... use cs
+Plugin 'tpope/vim-vinegar'
 Plugin 'unblevable/quick-scope'                " Show next or previous charcter to jump using f and co
 Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline.git'
