@@ -58,6 +58,7 @@ Plugin 'tpope/vim-rsi'                         " Readline key bindings! C-a C-k 
 Plugin 'tpope/vim-speeddating.git'             " Increase or decrease dates
 Plugin 'tpope/vim-surround'                    " Surround text with quotes or brackets or... use cs
 Plugin 'tpope/vim-vinegar'
+Plugin 'udalov/kotlin-vim'
 Plugin 'unblevable/quick-scope'                " Show next or previous charcter to jump using f and co
 Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline.git'
