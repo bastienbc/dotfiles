@@ -67,6 +67,7 @@ zplug "bastienbc/series-rename", as:command, use:'series-rename',\
 zplug 'bastienbc/dotfiles', as:plugin, use:'install_deps.zsh', defer:2
 zplug 'bastienbc/dotfiles', as:plugin, use:'plugins/*.zsh', defer:1
 zplug "mafredri/zsh-async", from:github
+zplug "plugins/kubectl",  from:oh-my-zsh, as:plugin, hook-load:"unalias k"
 zplug "plugins/colorized",  from:oh-my-zsh, as:plugin
 zplug "supercrabtree/k", from:github, as:plugin
 zplug "plugins/cp",  from:oh-my-zsh, as:plugin
@@ -84,6 +85,7 @@ zplug "plugins/tmux",  from:oh-my-zsh, as:plugin
 zplug "plugins/vi-mode",  from:oh-my-zsh, as:plugin
 zplug "plugins/vundle",  from:oh-my-zsh, as:plugin
 zplug "plugins/wd",  from:oh-my-zsh, as:plugin
+zplug "plugins/helm",  from:oh-my-zsh, as:plugin
 zplug "plugins/zsh-navigation-tools",  from:oh-my-zsh, as:plugin
 zplug "plugins/zsh_reload",  from:oh-my-zsh, as:plugin
 zplug "robbyrussell/oh-my-zsh", use:'lib/{completion,theme-and-appearance,compfix,directories,history}.zsh', as:plugin

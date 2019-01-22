@@ -29,11 +29,11 @@ then
 fi
 
 function vimin0 () {
-	xargs -0 -r sh -c 'vim '"$@"' "$@" < /dev/tty' vim
+	xargs -0 -r -o vim "$@"
 }
 
 function vimin () {
-	xargs -r sh -c 'vim '"$@"' "$@" < /dev/tty' vim
+	xargs -r -o vim "$@"
 }
 
 function vimg () {
@@ -79,4 +79,34 @@ function xsels() {
 	local C=$(xsel -b -o)
 	xsel -b -i <<<"$P"
 	xsel -p -i <<<"$C"
+}
+
+function klogz {
+	if [ -t 1 ];
+	then
+		ACTUALIZE="-f"
+	else
+		MULTI="-m"
+	fi
+	kubectl get pods | fzf --header-lines=1 --select-1 $MULTI | awk '{print $1;}' | xargs -I{} kubectl logs $ACTUALIZE "$@" {}
+}
+
+function kdelpz {
+	kubectl get pods | fzf --header-lines=1 --select-1 -m | awk '{print $1;}' | xargs -n 1 -I{} kubectl delete --wait=false pod "$@" {}
+}
+
+function kexz {
+	kubectl get pods | fzf --header-lines=1 --select-1 | awk '{print $1;}' | xargs -I{} --open-tty kubectl exec -it {} "$@"
+}
+
+function kgz {
+	kubectl get pods | fzf --header-lines=1 --select-1 -m | awk '{print $1;}'
+}
+
+function kgzec {
+	SECRETS=$(kubectl get secrets | fzf --header-lines=1 --select-1 -m | awk '{print $1;}' | xargs -n 1 -I{} -r kubectl get secrets {} -o json | jq -s 'reduce .[] as $x ( {}; . * $x.data )')
+	jq -r 'keys[]' <<< "${SECRETS}" | fzf --select-1 -m | \
+	while read var; do
+		echo "'$var': '$(jq -r '."'$var'"' <<< "${SECRETS}" | base64 -d)'"
+	done
 }
