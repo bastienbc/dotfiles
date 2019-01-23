@@ -119,8 +119,7 @@ function kpfz {
 	local PORTS=()
 	local SELECTS=($(kubectl get svc -o json "${SVC}" | jq -r '.spec.ports[] | [ .name, .port ] | @csv' | sed 's/"//g' | fzf -1 -m | tr '\n' ' ' ))
 	for value in ${SELECTS[@]}; do
-		local name=$(cut -d, -f 1 <<< "$value")
-		local port=$(cut -d, -f 2 <<< "$value")
+		IFS=',' read name port <<< "$value"
 		read "PORT?${name}[${port}]: "
 		if [ -z "$PORT" ]; then
 			PORT=$port
