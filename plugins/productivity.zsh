@@ -104,9 +104,28 @@ function kgz {
 }
 
 function kgzec {
-	SECRETS=$(kubectl get secrets | fzf --header-lines=1 --select-1 -m | awk '{print $1;}' | xargs -n 1 -I{} -r kubectl get secrets {} -o json | jq -s 'reduce .[] as $x ( {}; . * $x.data )')
+	local SECRETS=$(kubectl get secrets | fzf --header-lines=1 --select-1 -m | awk '{print $1;}' | xargs -n 1 -I{} -r kubectl get secrets {} -o json | jq -s 'reduce .[] as $x ( {}; . * $x.data )')
 	jq -r 'keys[]' <<< "${SECRETS}" | fzf --select-1 -m | \
 	while read var; do
 		echo "'$var': '$(jq -r '."'$var'"' <<< "${SECRETS}" | base64 -d)'"
 	done
+}
+
+function kpfz {
+	local SVC=$(kubectl get svc | fzf -1 | awk '{print $1;}')
+	if [ -z "${SVC}" ]; then
+		exit 0
+	fi
+	local PORTS=()
+	local SELECTS=($(kubectl get svc -o json "${SVC}" | jq -r '.spec.ports[] | [ .name, .port ] | @csv' | sed 's/"//g' | fzf -1 -m | tr '\n' ' ' ))
+	for value in ${SELECTS[@]}; do
+		local name=$(cut -d, -f 1 <<< "$value")
+		local port=$(cut -d, -f 2 <<< "$value")
+		read "PORT?${name}[${port}]: "
+		if [ -z "$PORT" ]; then
+			PORT=$port
+		fi
+		PORTS=($PORTS "$PORT:$port")
+	done
+	echo -e "${PORTS[@]}" | xargs -r kubectl port-forward "svc/${SVC}"
 }
