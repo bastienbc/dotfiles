@@ -96,7 +96,13 @@ function kdelpz {
 }
 
 function kexz {
-	kubectl get pods | fzf --header-lines=1 --select-1 | awk '{print $1;}' | xargs -I{} --open-tty kubectl exec -it {} "$@"
+	local SELECT=$(kubectl get pods | fzf --header-lines=1 --select-1 | awk '{print $1;}')
+	[ -z "$SELECT" ] && return 0
+	local CONTAINER=$(kubectl get pods -o json "$SELECT" | jq -r '.spec.containers[].name' | fzf --select-1)
+	[ -z "$CONTAINER" ] && return 0
+   	read "COMMAND?# > "
+	[ -z "$COMMAND" ] && COMMAND="/bin/bash"
+    kubectl exec -it -c $CONTAINER $SELECT $COMMAND
 }
 
 function kgz {
@@ -114,7 +120,7 @@ function kgzec {
 function kpfz {
 	local SVC=$(kubectl get svc | fzf -1 | awk '{print $1;}')
 	if [ -z "${SVC}" ]; then
-		exit 0
+		return 0
 	fi
 	local PORTS=()
 	local SELECTS=($(kubectl get svc -o json "${SVC}" | jq -r '.spec.ports[] | [ .name, .port ] | @csv' | sed 's/"//g' | fzf -1 -m | tr '\n' ' ' ))
@@ -127,4 +133,20 @@ function kpfz {
 		PORTS=($PORTS "$PORT:$port")
 	done
 	echo -e "${PORTS[@]}" | xargs -r kubectl port-forward "svc/${SVC}"
+}
+
+function drmc {
+	docker rm -v $(docker ps -a -q -f status=exited)
+}
+
+function drmz {
+	docker ps -a | fzf --header-lines=1 -m | awk '{print $1;}' | xargs -I{} -r docker rm -v {}
+}
+
+function drmi {
+	docker rmi $(docker images -f "dangling=true" -q)
+}
+
+function drmiz {
+	docker images | fzf --header-lines=1 -m | awk '{print $3;}' | xargs -I{} -r docker rmi {}
 }

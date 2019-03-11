@@ -33,6 +33,16 @@ function +vi-getGitTag() {
 	hook_com[branch]="${hook_com[branch]} "
 }
 
+prompt_pure_get_k8s_info() {
+	local RET_CODE=$?
+	local K8S_CURRENT="$(kubectl config current-context)"
+	local K8S_CONTEXT="$(kubectl config get-contexts "${K8S_CURRENT}")"
+	local K8S_SERVER="$(awk '{print $3;}' <<< "${K8S_CONTEXT}" | sed '1d;s|^.*/||g')"
+	local K8S_NAMESPACE="$(awk 'FNR == 2 { print $5; }' <<< "${K8S_CONTEXT}")"
+	echo -n "%F{blue}\ufcb4 [${K8S_CURRENT}/%F{103}${K8S_SERVER}%F{blue}/%F{69}${K8S_NAMESPACE}%F{blue}]%f"
+	return $RET_CODE
+}
+
 prompt_pure_update_vim_prompt() {
 	zle || {
 		print "error: pure_update_vim_prompt must be called when zle is active"
@@ -55,6 +65,9 @@ zle -N zle-keymap-select
 RPROMPT='%F{white}%*'
 prompt_newline='${VIM_PROMPT:+ $VIM_PROMPT }'$'\n%{\r%}'
 PROMPT='%(1j.[%j '$'\uf04c''] .)'
+if [ -z "$NO_KUBE_PROMPT" ]; then
+	PROMPT+='$(prompt_pure_get_k8s_info) '
+fi
 PROMPT+='%(12V.%F{242}%12v${PURE_PROMPT_SYMBOL:-❯}%f .)'
 PROMPT+='%(?.%F{cyan}.%F{red}${PURE_PROMPT_SYMBOL:-❯} $? %F{cyan})'
 PROMPT+='${PURE_PROMPT_SYMBOL:-❯}%f '
