@@ -13,8 +13,8 @@ install_xfce_theme() {
 			ln -fs "$REPO/xfce-theme/Numix Solarized" "$HOME/.themes/Numix Solarized"
 			[ ! -d "$HOME/.config/xfce4/terminal" ] && mkdir -p "$HOME/.config/xfce4/terminal"
 			ln -fs "$REPO/xfce-terminal/terminalrc" "$HOME/.config/xfce4/terminal/terminalrc"
-            xfconf-query -c xfwm4 -p /general/theme -s "Numix Solarized"
-			xfconf-query -c xsettings -p /Net/ThemeName -s "Numix Solarized"
+#            xfconf-query -c xfwm4 -p /general/theme -s "Numix Solarized"
+#			xfconf-query -c xsettings -p /Net/ThemeName -s "Numix Solarized"
 		)
 	fi
 }

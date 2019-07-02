@@ -30,6 +30,8 @@ alias first="head -n 1"
 alias ct='bat --style plain'
 alias ka='k -Ah'
 
+alias t='terraform'
+
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
 alias yank='yank-cli'

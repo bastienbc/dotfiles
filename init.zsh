@@ -67,7 +67,7 @@ zplug "bastienbc/series-rename", as:command, use:'series-rename',\
 zplug 'bastienbc/dotfiles', as:plugin, use:'install_deps.zsh', defer:2
 zplug 'bastienbc/dotfiles', as:plugin, use:'plugins/*.zsh', defer:1
 zplug "mafredri/zsh-async", from:github
-zplug "plugins/kubectl",  from:oh-my-zsh, as:plugin, hook-load:"unalias k"
+zplug "plugins/kubectl",  from:oh-my-zsh, as:plugin, hook-load:"unalias k 2>/dev/null"
 zplug "plugins/colorized",  from:oh-my-zsh, as:plugin
 zplug "supercrabtree/k", from:github, as:plugin
 zplug "plugins/cp",  from:oh-my-zsh, as:plugin
@@ -78,8 +78,9 @@ zplug "plugins/history-substring-search", from:oh-my-zsh, as:plugin, defer:1
 zplug "plugins/jsontools",  from:oh-my-zsh, as:plugin
 zplug "plugins/perl",  from:oh-my-zsh, as:plugin
 zplug "plugins/python",  from:oh-my-zsh, as:plugin
+zplug "plugins/terraform",  from:oh-my-zsh, as:plugin
 zplug "plugins/rsync",  from:oh-my-zsh, as:plugin
-zplug "plugins/thefuck",  from:oh-my-zsh, as:plugin, hook-build:"pip install --upgrade --user thefuck"
+# zplug "plugins/thefuck",  from:oh-my-zsh, as:plugin, hook-build:"pip install --upgrade --user thefuck"
 zplug "plugins/tig",  from:oh-my-zsh, as:plugin
 zplug "plugins/tmux",  from:oh-my-zsh, as:plugin
 zplug "plugins/vi-mode",  from:oh-my-zsh, as:plugin

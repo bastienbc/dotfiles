@@ -29,15 +29,15 @@ then
 fi
 
 function vimin0 () {
-	xargs -0 -r -o vim "$@"
+	xargs -0 -r sh -c 'vim "$@" < /dev/tty' vim
 }
 
 function vimin () {
-	xargs -r -o vim "$@"
+	xargs -r sh -c 'vim "$@" < /dev/tty' vim
 }
 
 function vimg () {
-	rg -l -0 "$@" | fzf${TMUX:+-tmux} -m -0 -1 --read0 --print0 | vimin0
+	rg -l -0 "$@" | fzf${TMUX:+-tmux} -m -0 -1 --read0 --print0 --bind ctrl-t:toggle-all | vimin0
 }
 
 function wdl () {
@@ -46,7 +46,7 @@ function wdl () {
 }
 
 function vimf() {
-	fd -t f -0 "$@" | fzf${TMUX:+-tmux} -0 -m -1 --read0 --print0 | vimin0
+	fd -t f -0 "$@" | fzf${TMUX:+-tmux} -0 -m -1 --read0 --print0 --bind ctrl-t:toggle-all | vimin0
 }
 
 function vimp() {
@@ -86,13 +86,13 @@ function klogz {
 	then
 		ACTUALIZE="-f"
 	else
-		MULTI="-m"
+		MULTI="-m --bind ctrl-t:toggle-all"
 	fi
 	kubectl get pods | fzf --header-lines=1 --select-1 $MULTI | awk '{print $1;}' | xargs -I{} kubectl logs $ACTUALIZE "$@" {}
 }
 
 function kdelpz {
-	kubectl get pods | fzf --header-lines=1 --select-1 -m | awk '{print $1;}' | xargs -n 1 -I{} kubectl delete --wait=false pod "$@" {}
+	kubectl get pods | fzf --header-lines=1 --select-1 -m --bind ctrl-t:toggle-all | awk '{print $1;}' | xargs -n 1 -I{} kubectl delete --wait=false pod "$@" {}
 }
 
 function kexz {
@@ -106,12 +106,12 @@ function kexz {
 }
 
 function kgz {
-	kubectl get pods | fzf --header-lines=1 --select-1 -m | awk '{print $1;}'
+	kubectl get pods | fzf --header-lines=1 --select-1 -m --bind ctrl-t:toggle-all | awk '{print $1;}'
 }
 
 function kgzec {
-	local SECRETS=$(kubectl get secrets | fzf --header-lines=1 --select-1 -m | awk '{print $1;}' | xargs -n 1 -I{} -r kubectl get secrets {} -o json | jq -s 'reduce .[] as $x ( {}; . * $x.data )')
-	jq -r 'keys[]' <<< "${SECRETS}" | fzf --select-1 -m | \
+	local SECRETS=$(kubectl get secrets | fzf --header-lines=1 --select-1 -m --bind ctrl-t:toggle-all | awk '{print $1;}' | xargs -n 1 -I{} -r kubectl get secrets {} -o json | jq -s 'reduce .[] as $x ( {}; . * $x.data )')
+	jq -r 'keys[]' <<< "${SECRETS}" | fzf --select-1 -m --bind ctrl-t:toggle-all | \
 	while read var; do
 		echo "'$var': '$(jq -r '."'$var'"' <<< "${SECRETS}" | base64 -d)'"
 	done
@@ -140,7 +140,7 @@ function drmc {
 }
 
 function drmz {
-	docker ps -a | fzf --header-lines=1 -m | awk '{print $1;}' | xargs -I{} -r docker rm -v {}
+	docker ps -a | fzf --header-lines=1 -m --bind ctrl-t:toggle-all | awk '{print $1;}' | xargs -I{} -r docker rm -v {}
 }
 
 function drmi {
@@ -148,5 +148,23 @@ function drmi {
 }
 
 function drmiz {
-	docker images | fzf --header-lines=1 -m | awk '{print $3;}' | xargs -I{} -r docker rmi {}
+	docker images | fzf --header-lines=1 -m --bind ctrl-t:toggle-all | awk '{print $3;}' | xargs -I{} -r docker rmi {}
+}
+
+function drmizf {
+	docker images | fzf --header-lines=1 -m --bind ctrl-t:toggle-all | awk '{print $3;}' | xargs -I{} -r docker rmi -f {}
+}
+
+function notif {
+	local COMMAND="$@"
+	local RESULT=""
+	RESULT="$("$@" 1> /dev/null)"
+	local STATUS=$?
+	echo "$RESULT"
+	if [ "$STATUS" -eq 0 ]; then
+		notify-send -u normal -c Command "Success" "'${COMMAND}'"
+	else
+		notify-send -u critical -c Command "Failure" "exit $STATUS: '${COMMAND}'\n$RESULT"
+	fi
+	return $STATUS
 }
