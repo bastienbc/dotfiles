@@ -80,6 +80,7 @@ zplug "plugins/perl",  from:oh-my-zsh, as:plugin
 zplug "plugins/python",  from:oh-my-zsh, as:plugin
 zplug "plugins/terraform",  from:oh-my-zsh, as:plugin
 zplug "plugins/rsync",  from:oh-my-zsh, as:plugin
+zplug "plugins/transfer",  from:oh-my-zsh, as:plugin
 # zplug "plugins/thefuck",  from:oh-my-zsh, as:plugin, hook-build:"pip install --upgrade --user thefuck"
 zplug "plugins/tig",  from:oh-my-zsh, as:plugin
 zplug "plugins/tmux",  from:oh-my-zsh, as:plugin

@@ -4,14 +4,14 @@ set t_Co=256
 set nocp
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
+let g:go_version_warning = 0
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'amiorin/vim-project'                   " Project listing with location and callbacks !
-Plugin 'bagrat/vim-workspace'                  " Better tabline
+Plugin 'bagrat/vim-buffet'                  " Better tabline
 Plugin 'bling/vim-bufferline.git'              " List buffers
 Plugin 'bronson/vim-trailing-whitespace'       " I want to see trailing whitespace
 Plugin 'cespare/vim-toml'                      " TOML support
@@ -60,7 +60,7 @@ Plugin 'tpope/vim-surround'                    " Surround text with quotes or br
 Plugin 'tpope/vim-vinegar'
 Plugin 'udalov/kotlin-vim'
 Plugin 'unblevable/quick-scope'                " Show next or previous charcter to jump using f and co
-Plugin 'valloric/youcompleteme'
+Plugin 'ycm-core/youcompleteme'
 Plugin 'vim-airline/vim-airline.git'
 Plugin 'vim-airline/vim-airline-themes.git'
 Plugin 'xuyuanp/nerdtree-git-plugin'           " Git status in nerdtree
