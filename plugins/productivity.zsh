@@ -88,11 +88,11 @@ function klogz {
 	else
 		MULTI="-m --bind ctrl-t:toggle-all"
 	fi
-	kubectl get pods | fzf --header-lines=1 --select-1 $MULTI | awk '{print $1;}' | xargs -I{} kubectl logs $ACTUALIZE "$@" {}
+	kubectl get pods | fzf --header-lines=1 --select-1 $MULTI | awk '{print $1;}' | xargs -r -I{} kubectl logs $ACTUALIZE "$@" {}
 }
 
 function kdelpz {
-	kubectl get pods | fzf --header-lines=1 --select-1 -m --bind ctrl-t:toggle-all | awk '{print $1;}' | xargs -n 1 -I{} kubectl delete --wait=false pod "$@" {}
+	kubectl get pods | fzf --header-lines=1 -m --bind ctrl-t:toggle-all | awk '{print $1;}' | xargs -r -n 1 -I{} kubectl delete --wait=false pod "$@" {}
 }
 
 function kexz {
