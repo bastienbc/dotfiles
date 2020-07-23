@@ -41,6 +41,20 @@ then
 	PATH=${PATH}:${HOME}/.cargo/bin
 fi
 
+if ! has_istioctl
+then
+	revolver-loading 'Installing istioctl'
+	install_istioctl
+fi
+
+if has_istioctl
+then
+	post_install_istioctl
+fi
+
+revolver stop
+
+
 if zplug check zsh-users/zsh-autosuggestions; then
 	ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 	ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")

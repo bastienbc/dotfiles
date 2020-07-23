@@ -64,6 +64,8 @@ Plugin 'ycm-core/youcompleteme'
 Plugin 'vim-airline/vim-airline.git'
 Plugin 'vim-airline/vim-airline-themes.git'
 Plugin 'xuyuanp/nerdtree-git-plugin'           " Git status in nerdtree
+Plugin 'stephpy/vim-yaml'
+Plugin 'towolf/vim-helm'
 call vundle#end()
 syn on
 set syntax=on
@@ -80,6 +82,7 @@ filetype indent plugin on
 " autocmd BufNewFile,BufRead *.BAS set ft=vbnet
 " autocmd BufNewFile,BufRead *.FRM set ft=vbnet
 autocmd FileType sh set ts=4 sw=4 expandtab
+autocmd FileType helm set ts=2 sw=2 expandtab
 set nu
 
 set mouse=a
@@ -198,7 +201,6 @@ elseif executable("ag")
 endif
 
 autocmd BufNewFile,BufRead *.py IndentGuidesEnable
-
 
 let g:tagbar_type_vbnet = {
     \ 'ctagstype' : 'vb',

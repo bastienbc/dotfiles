@@ -74,6 +74,13 @@ function ghq-update() {
 	ghq list -e -p | xargs -i{} -n 1 -P 4 -r -- chronic bash -c '(echo -n {} ; git -C {} pull --ff-only)'
 }
 
+function ghl() {
+	local FOLDER
+	ghq list -p "$1" | fzf --select-1 | read FOLDER
+	echo $FOLDER
+	cd "$FOLDER"
+}
+
 function xsels() {
 	local P=$(xsel -p -o)
 	local C=$(xsel -b -o)
@@ -133,6 +140,10 @@ function kpfz {
 		PORTS=($PORTS "$PORT:$port")
 	done
 	echo -e "${PORTS[@]}" | xargs -r kubectl port-forward "svc/${SVC}"
+}
+
+function kgpdb0 {
+	kubectl get pdb --all-namespaces | awk ' NR==1 {print $0; } NR > 1 && $5 == 0 { print $0; }'
 }
 
 function drmc {

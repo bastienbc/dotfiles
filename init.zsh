@@ -2,6 +2,7 @@
 
 setopt AUTO_NAME_DIRS
 setopt CDABLE_VARS
+setopt HIST_FIND_NO_DUPS
 
 source $HOME/.zplug/repos/bastienbc/dotfiles/plugins/revolver-helper.zsh
 revolver-load-zplug
@@ -69,11 +70,11 @@ zplug 'bastienbc/dotfiles', as:plugin, use:'plugins/*.zsh', defer:1
 zplug "mafredri/zsh-async", from:github
 zplug "plugins/kubectl",  from:oh-my-zsh, as:plugin, hook-load:"unalias k 2>/dev/null"
 zplug "plugins/colorized",  from:oh-my-zsh, as:plugin
-zplug "supercrabtree/k", from:github, as:plugin
+zplug "supercrabtree/k", from:github, as:plugin, use:'k.sh'
 zplug "plugins/cp",  from:oh-my-zsh, as:plugin
 zplug "plugins/fasd",  from:oh-my-zsh, as:plugin
 zplug "plugins/git",  from:oh-my-zsh, as:plugin
-zplug "plugins/go",  from:oh-my-zsh, as:plugin
+zplug "plugins/golang",  from:oh-my-zsh, as:plugin
 zplug "plugins/history-substring-search", from:oh-my-zsh, as:plugin, defer:1
 zplug "plugins/jsontools",  from:oh-my-zsh, as:plugin
 zplug "plugins/perl",  from:oh-my-zsh, as:plugin
