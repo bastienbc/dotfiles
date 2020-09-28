@@ -14,8 +14,9 @@ zplug "molovo/revolver", \
   as:command, \
   use:revolver
 zplug 'sharkdp/bat', \
-	from:gh-r, \
 	as:command, \
+	use:'target/release/bat', \
+	hook-build:'cargo build --release', \
 	rename-to:"bat"
 zplug 'svenstaro/genact', \
 	from:gh-r, \
