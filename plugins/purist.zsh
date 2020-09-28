@@ -39,7 +39,17 @@ prompt_pure_get_k8s_info() {
 	local K8S_CONTEXT="$(kubectl config get-contexts "${K8S_CURRENT}")"
 	local K8S_SERVER="$(awk '{print $3;}' <<< "${K8S_CONTEXT}" | sed '1d;s|^.*/||g')"
 	local K8S_NAMESPACE="$(awk 'FNR == 2 { print $5; }' <<< "${K8S_CONTEXT}")"
-	echo -n "%F{blue}\ufcb4 [${K8S_CURRENT}/%F{103}${K8S_SERVER}%F{blue}/%F{69}${K8S_NAMESPACE}%F{blue}]%f"
+	local K8S_USER="$(awk 'FNR == 2 { print $4; }' <<< "${K8S_CONTEXT}")"
+	local NAMESPACE_COLOR="%F{69}"
+	case "${K8S_NAMESPACE}" in
+		preprod-*)
+			NAMESPACE_COLOR="%F{yellow}"
+			;;
+		prod-*)
+			NAMESPACE_COLOR="%F{red}"
+			;;
+	esac
+	echo -n "%F{blue}\ufcb4 [${K8S_CURRENT}/%F{103}${K8S_SERVER}%F{blue}/%F{cyan}${K8S_USER}/${NAMESPACE_COLOR}${K8S_NAMESPACE}%F{blue}]%f"
 	return $RET_CODE
 }
 
