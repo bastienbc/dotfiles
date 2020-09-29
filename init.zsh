@@ -13,6 +13,16 @@ zplug "peco/peco", as:command, from:gh-r
 zplug "molovo/revolver", \
   as:command, \
   use:revolver
+zplug 'bootandy/dust', \
+	as:command, \
+	use:'target/release/dust', \
+	hook-build:'cargo build --release', \
+	rename-to:"dust"
+zplug 'mmstick/parallel', \
+	as:command, \
+	use:'target/release/parallel', \
+	hook-build:'cargo build --release', \
+	rename-to:"para"
 zplug 'sharkdp/bat', \
 	as:command, \
 	use:'target/release/bat', \
