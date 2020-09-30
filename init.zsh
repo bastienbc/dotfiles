@@ -13,6 +13,16 @@ zplug "peco/peco", as:command, from:gh-r
 zplug "molovo/revolver", \
   as:command, \
   use:revolver
+zplug 'rauno56/watchman', \
+	as:command, \
+	use:'target/release/watchman', \
+	hook-build:'cargo build --release', \
+	rename-to:"wm"
+zplug 'vladimirmarkelov/pwatch', \
+	as:command, \
+	use:'target/release/pwatch', \
+	hook-build:'cargo build --release', \
+	rename-to:"pw"
 zplug 'bootandy/dust', \
 	as:command, \
 	use:'target/release/dust', \
@@ -37,6 +47,11 @@ zplug 'BurntSushi/ripgrep', \
 	hook-build:'cargo build --release', \
 	as:command, \
 	rename-to:"rg"
+zplug 'antonmedv/watch', \
+	use:'watch', \
+	hook-build:'go build', \
+	as:command, \
+	rename-to:"wa"
 zplug 'stedolan/jq', \
 	from:gh-r, \
 	as:command
