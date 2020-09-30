@@ -35,3 +35,6 @@ alias t='terraform'
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
 alias yank='yank-cli'
+
+alias wms='wm show'
+alias wmf='wm fix'
