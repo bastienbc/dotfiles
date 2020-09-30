@@ -42,6 +42,11 @@ zplug 'svenstaro/genact', \
 	from:gh-r, \
 	as:command, \
 	rename-to:"genact"
+zplug 'BurntSushi/xsv', \
+	use:'target/release/xsv', \
+	hook-build:'cargo build --release', \
+	as:command, \
+	rename-to:"xsv"
 zplug 'BurntSushi/ripgrep', \
 	use:'target/release/rg', \
 	hook-build:'cargo build --release', \
