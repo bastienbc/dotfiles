@@ -47,11 +47,6 @@ zplug 'BurntSushi/ripgrep', \
 	hook-build:'cargo build --release', \
 	as:command, \
 	rename-to:"rg"
-zplug 'antonmedv/watch', \
-	use:'watch', \
-	hook-build:'go build', \
-	as:command, \
-	rename-to:"wa"
 zplug 'stedolan/jq', \
 	from:gh-r, \
 	as:command
