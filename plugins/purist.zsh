@@ -45,7 +45,7 @@ prompt_pure_get_k8s_info() {
 		preprod-*|admin|ingress)
 			NAMESPACE_COLOR="%F{yellow}"
 			;;
-		prod-*)
+		prod-*|kube-system)
 			NAMESPACE_COLOR="%F{red}"
 			;;
 	esac
