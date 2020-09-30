@@ -42,7 +42,7 @@ prompt_pure_get_k8s_info() {
 	local K8S_USER="$(awk 'FNR == 2 { print $4; }' <<< "${K8S_CONTEXT}")"
 	local NAMESPACE_COLOR="%F{69}"
 	case "${K8S_NAMESPACE}" in
-		preprod-*)
+		preprod-*|admin|ingress)
 			NAMESPACE_COLOR="%F{yellow}"
 			;;
 		prod-*)
