@@ -74,7 +74,11 @@ if has('gui_running')
 else
 	set background=dark
 endif
-colorscheme solarized
+try
+	colorscheme solarized
+catch /^Vim\%((\a\+)\)\=:E185/
+	" echo "no solarized colorsheme"
+endtry
 filetype indent plugin on
 
 
