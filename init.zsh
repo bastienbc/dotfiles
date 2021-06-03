@@ -4,6 +4,10 @@ setopt AUTO_NAME_DIRS
 setopt CDABLE_VARS
 setopt HIST_FIND_NO_DUPS
 
+export GOPATH="${HOME}/.go:${GOPATH}"
+export GHQ_ROOT="${HOME}/.ghq"
+export PATH="${PATH}:${HOME}/.cargo/bin:${HOME}/.go/bin:${HOME}/.local/bin:${HOME}/bin"
+
 source $HOME/.zplug/repos/bastienbc/dotfiles/plugins/revolver-helper.zsh
 revolver-load-zplug
 
@@ -68,7 +72,3 @@ if zplug check "plugins/history-substring-search"; then
 	bindkey '^[OA' history-substring-search-up
 	bindkey '^[OA' history-substring-search-down
 fi
-
-export GOPATH="${HOME}/.go:${GOPATH}"
-export GHQ_ROOT="${HOME}/.ghq"
-export PATH="${PATH}:${HOME}/.cargo/bin:${HOME}/.go/bin:${HOME}/bin"
