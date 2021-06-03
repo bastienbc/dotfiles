@@ -48,6 +48,7 @@ zplug 'zsh-users/zsh-completions', as:plugin
 zplug 'MichaelAquilina/zsh-emojis', as:plugin
 zplug "b4b4r07/emoji-cli", as:plugin
 zplug "zsh-users/zsh-syntax-highlighting", defer:2, as:plugin
+zplug "jeffreytse/zsh-vi-mode", as:plugin
 zplug-install-load
 revolver-loading-stop
 
