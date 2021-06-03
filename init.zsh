@@ -70,4 +70,6 @@ if zplug check "plugins/history-substring-search"; then
 	bindkey '^[OA' history-substring-search-down
 fi
 
+export GOPATH="${HOME}/.go:${GOPATH}"
+export GHQ_ROOT="${HOME}/.ghq"
 export PATH="${PATH}:${HOME}/.cargo/bin:${HOME}/.go/bin:${HOME}/bin"
