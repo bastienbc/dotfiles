@@ -38,7 +38,6 @@ zplug "plugins/helm",  from:oh-my-zsh, as:plugin
 zplug "plugins/zsh-navigation-tools",  from:oh-my-zsh, as:plugin
 zplug "plugins/zsh_reload",  from:oh-my-zsh, as:plugin
 zplug "robbyrussell/oh-my-zsh", use:'lib/{completion,theme-and-appearance,compfix,directories,history}.zsh', as:plugin
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zplug "zlsun/solarized-man", from:github, as:plugin
 zplug 'zsh-users/zsh-autosuggestions', as:plugin
 zplug 'zsh-users/zsh-completions', as:plugin

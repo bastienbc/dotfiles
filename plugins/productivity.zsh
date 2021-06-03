@@ -1,20 +1,3 @@
-#!/usr/bin/env zsh
-
-if [ ! -f "${HOME}/.peco/config.json" ]
-then
-	if [ ! -d "${HOME}/.peco" ]
-	then
-		ln -s "${0:A:h:h}/.peco" "${HOME}/.peco" >& /dev/null
-	else
-		ln -s "${0:A:h:h}/.peco/config.json" "${HOME}/.peco/config.json" >& /dev/null
-	fi
-fi
-
-if [ ! -f "${HOME}/.local/bin/pip" ]
-then
-	curl https://bootstrap.pypa.io/get-pip.py | python3 - --user
-fi
-
 function _gen_rgrc () {
 	local rgrc_content
 	rgrc_content="${(Xe)"$( < $1 )"}"
