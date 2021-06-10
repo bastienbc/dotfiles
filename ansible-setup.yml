@@ -116,9 +116,36 @@
       ansible.builtin.command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
   tasks:
+    - name: create alacritty configuration directory
+      ansible.builtin.file:
+        name:  "{{ lookup('env', 'HOME') }}/.config/alacritty"
+        state: directory
+
+    - name: create alacritty configuration link
+      ansible.builtin.file:
+        src: "{{ lookup('env', 'HOME') }}/.ghq/github.com/bastienbc/dotfiles/alacritty.yml"
+        dest: "{{ lookup('env', 'HOME') }}/.config/alacritty/alacritty.yml"
+        state: link
+
+    - name: create sheldon configuration directory
+      ansible.builtin.file:
+        name:  "{{ lookup('env', 'HOME') }}/.config/sheldon"
+        state: directory
+
+    - name: create sheldon configuration link
+      ansible.builtin.file:
+        src: "{{ lookup('env', 'HOME') }}/.ghq/github.com/bastienbc/dotfiles/plugins.toml"
+        dest: "{{ lookup('env', 'HOME') }}/.config/sheldon/plugins.toml"
+        state: link
+
     - name: create vim configuration directory
       ansible.builtin.file:
         name:  "{{ lookup('env', 'HOME') }}/.vim/bundle"
+        state: directory
+
+    - name: create vim snippets directory
+      ansible.builtin.file:
+        name:  "{{ lookup('env', 'HOME') }}/.vim/UltiSnips"
         state: directory
 
     - name: clone vundle project
@@ -133,6 +160,12 @@
         dest: "{{ lookup('env', 'HOME') }}/.vimrc"
         state: link
       notify: trigger vundle install
+
+    - name: create vim snippets link
+      ansible.builtin.file:
+        src: "{{ lookup('env', 'HOME') }}/.ghq/github.com/bastienbc/dotfiles/spec.snippets"
+        dest: "{{ lookup('env', 'HOME') }}/.vim/UltiSnips/spec.snippets"
+        state: link
 
     - name: create tmux configuration directory
       ansible.builtin.file:

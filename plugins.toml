@@ -158,3 +158,6 @@ github = "b4b4r07/emoji-cli"
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.load-starship]
+inline = 'eval "$(starship init zsh)"'
