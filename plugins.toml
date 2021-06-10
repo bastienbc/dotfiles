@@ -1,0 +1,160 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+shell = "zsh"
+
+[templates]
+defer = { value = 'zsh-defer source "{{ file }}"', each = true }
+ln = { value = '[ ! -e "${HOME}/bin/{{name}}" ] && ln -s -T {{ file }} "${HOME}/bin/{{ name }}"', each = true }
+
+[plugins]
+
+# For example:
+#
+# [plugins.base16]
+# github = "chriskempson/base16-shell"
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+[plugins.revolver]
+github = "molovo/revolver"
+apply = [ "ln" ]
+use = [ "revolver" ]
+
+[plugins.spark]
+github = "holman/spark"
+apply = [ "ln" ]
+use = [ "spark" ]
+
+[plugins.emojify]
+github = "mrowa44/emojify"
+apply = [ "ln" ]
+use = [ "emojify" ]
+
+[plugins.omz]
+github = "ohmyzsh/ohmyzsh"
+use = [ "oh-my-zsh.sh" ]
+
+[plugins.omz-libs]
+github = "ohmyzsh/ohmyzsh"
+dir = "lib"
+use = [ "completion.zsh", "theme-and-appearance.zsh", "compfix.zsh", "directories.zsh", "history.zsh"]
+
+[plugins.kubectl]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/kubectl"
+
+[plugins.unalias-k]
+inline = "unalias k 2>/dev/null"
+
+[plugins.colorize]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/colorize"
+
+[plugins.cp]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/cp"
+
+[plugins.fasd]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/fasd"
+
+[plugins.git]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/git"
+
+[plugins.golang]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/golang"
+
+[plugins.jsontools]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/jsontools"
+
+[plugins.perl]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/perl"
+
+[plugins.python]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/python"
+
+[plugins.terraform]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/terraform"
+
+[plugins.rsync]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/rsync"
+
+[plugins.transfer]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/transfer"
+
+[plugins.thefuck]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/thefuck"
+
+[plugins.tmux]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/tmux"
+
+[plugins.vundle]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/vundle"
+
+[plugins.wd]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/wd"
+
+[plugins.helm]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/helm"
+
+[plugins.zsh-navigation-tools]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/zsh-navigation-tools"
+
+[plugins.zsh_reload]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/zsh_reload"
+
+[plugins.zsh-vi-mode]
+github = "jeffreytse/zsh-vi-mode"
+
+[plugins.mydotfiles]
+github = "bastienbc/dotfiles"
+dir = "plugins"
+
+[plugins.zsh-async]
+github = "mafredri/zsh-async"
+
+[plugins.k]
+github = "supercrabtree/k"
+
+[plugins.solarized-man]
+github = "zlsun/solarized-man"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.zsh-emojis]
+github = "MichaelAquilina/zsh-emojis"
+
+[plugins.emoji-cli]
+github = "b4b4r07/emoji-cli"
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"

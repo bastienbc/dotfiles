@@ -33,6 +33,7 @@
           - moreutils
           - yank
           - xsel
+          - snapd
         state: latest
 
     - name: Use zsh as shell
@@ -40,6 +41,13 @@
       user:
         name: "{{ lookup( 'env', 'USER' ) }}"
         shell: /usr/bin/zsh
+
+    - name: create snapd link
+      become: yes
+      ansible.builtin.file:
+        src: "/var/lib/snapd/snap"
+        dest: "/snap"
+        state: link
 
 - name: Setup Fonts and colors
   hosts: 127.0.0.1
@@ -89,13 +97,13 @@
   tasks:
     - name: create directories
       ansible.builtin.file:
-        name:  "{{ lookup('env', 'HOME') }}/.zplug/repos/bastienbc"
+        name:  "{{ lookup('env', 'HOME') }}/.ghq/github.com/bastienbc/dotfiles"
         state: directory
 
     - name: clone dotfiles project
       ansible.builtin.git:
         repo: 'git@github.com:bastienbc/dotfiles.git'
-        dest: "{{ lookup('env', 'HOME') }}/.zplug/repos/bastienbc/dotfiles"
+        dest: "{{ lookup('env', 'HOME') }}/.ghq/github.com/bastienbc/dotfiles"
 
 
 - name: Install Vim and Tmux plugins
@@ -121,7 +129,7 @@
 
     - name: create vimrc link
       ansible.builtin.file:
-        src: "{{ lookup('env', 'HOME') }}/.zplug/repos/bastienbc/dotfiles/.vimrc"
+        src: "{{ lookup('env', 'HOME') }}/.ghq/github.com/bastienbc/dotfiles/.vimrc"
         dest: "{{ lookup('env', 'HOME') }}/.vimrc"
         state: link
       notify: trigger vundle install
@@ -139,7 +147,7 @@
 
     - name: create tmuxrc link
       ansible.builtin.file:
-        src: "{{ lookup('env', 'HOME') }}/.zplug/repos/bastienbc/dotfiles/.tmux.conf"
+        src: "{{ lookup('env', 'HOME') }}/.ghq/github.com/bastienbc/dotfiles/.tmux.conf"
         dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
         state: link
       notify: trigger tpm install
@@ -174,6 +182,7 @@
         - lsd
         - pueue
         - pier
+        - sheldon
 
     - name: Install go tools
       ansible.builtin.command: go get -u {{ item }}
@@ -198,6 +207,13 @@
       loop:
         - awscli
         - thefuck
-        - mdv#
+        - mdv
+
+    - name: Install snap tools
+      become: yes
+      ansible.builtin.command: "snap install --classic {{ item }}"
+      loop:
+        - helm
+        - kubectl
 #
 
