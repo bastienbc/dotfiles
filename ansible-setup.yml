@@ -1,0 +1,203 @@
+---
+- name: Setup "Dev" tools
+  hosts: 127.0.0.1
+  tasks:
+    - name: Install compilers for golang, rust and gcc
+      become: yes
+      dnf:
+        name:
+          - gcc
+          - gcc-c++
+          - clang
+          - golang
+          - cargo
+          - rust
+          - cmake
+          - python3-pip
+          - python3-devel
+          - cpan
+          - perl-Module-Build
+          - npm
+          - nodejs
+        state: latest
+
+    - name: Install zsh, gvim, tmux and alacritty
+      become: yes
+      dnf:
+        name:
+          - zsh
+          - gvim
+          - alacritty
+          - tmux
+          - starship
+          - moreutils
+          - yank
+          - xsel
+        state: latest
+
+    - name: Use zsh as shell
+      become: yes
+      user:
+        name: "{{ lookup( 'env', 'USER' ) }}"
+        shell: /usr/bin/zsh
+
+- name: Setup Fonts and colors
+  hosts: 127.0.0.1
+  handlers:
+    - name: Refresh share font cache
+      ansible.builtin.command: fc-cache -vf {{ lookup('env', 'HOME') }}/.local/share/fonts | quote }}
+
+  tasks:
+    - name: Create directory share fonts
+      ansible.builtin.file:
+        name:  "{{ lookup('env', 'HOME') }}/.local/share/fonts"
+        state: directory
+
+    - name: Download powerline fonts
+      notify: Refresh share font cache
+      get_url:
+        dest: "{{ lookup('env', 'HOME') }}/.local/share/fonts/{{ item.font }}"
+        force: yes
+        url: "{{ item.url }}"
+      loop:
+        - url: "https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf"
+          font: PowerlineSymbols.otf
+        - url: "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
+          font: DejaVu Sans Mono Nerd Font Complete Mono.ttf
+
+    - name: Create directory share fonts
+      ansible.builtin.file:
+        name:  "{{ lookup('env', 'HOME') }}/.config/fontconfig/conf.d"
+        state: directory
+
+    - name: Download powerline fonts configs
+      get_url:
+        dest: "{{ lookup('env', 'HOME') }}/.config/fontconfig/conf.d/{{ item.font }}"
+        force: yes
+        url: "{{ item.url }}"
+      loop:
+        - url: "https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf"
+          font: 10-powerline-symbols.conf
+        - url: "https://github.com/ryanoasis/nerd-fonts/raw/master/10-nerd-font-symbols.conf"
+          font: 10-nerd-font-symbols.conf
+#    - name: Flush font handlers
+#      meta: flush_handlers
+
+
+- name: Install dotfiles project
+  hosts: 127.0.0.1
+  tasks:
+    - name: create directories
+      ansible.builtin.file:
+        name:  "{{ lookup('env', 'HOME') }}/.zplug/repos/bastienbc"
+        state: directory
+
+    - name: clone dotfiles project
+      ansible.builtin.git:
+        repo: 'git@github.com:bastienbc/dotfiles.git'
+        dest: "{{ lookup('env', 'HOME') }}/.zplug/repos/bastienbc/dotfiles"
+
+
+- name: Install Vim and Tmux plugins
+  hosts: 127.0.0.1
+  handlers:
+    - name: trigger vundle install
+      ansible.builtin.command: vim +PluginInstall +qall
+
+    - name: trigger tpm install
+      ansible.builtin.command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/install_plugins.sh"
+
+  tasks:
+    - name: create vim configuration directory
+      ansible.builtin.file:
+        name:  "{{ lookup('env', 'HOME') }}/.vim/bundle"
+        state: directory
+
+    - name: clone vundle project
+      ansible.builtin.git:
+        repo: 'https://github.com/VundleVim/Vundle.vim.git'
+        dest: "{{ lookup('env', 'HOME') }}/.vim/bundle/Vundle.vim"
+      notify: trigger vundle install
+
+    - name: create vimrc link
+      ansible.builtin.file:
+        src: "{{ lookup('env', 'HOME') }}/.zplug/repos/bastienbc/dotfiles/.vimrc"
+        dest: "{{ lookup('env', 'HOME') }}/.vimrc"
+        state: link
+      notify: trigger vundle install
+
+    - name: create tmux configuration directory
+      ansible.builtin.file:
+        name: "{{ lookup('env', 'HOME') }}/.tmux/plugins"
+        state: directory
+
+    - name: clone tpm project
+      ansible.builtin.git:
+        repo: 'https://github.com/tmux-plugins/tpm.git'
+        dest: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm"
+      notify: trigger tpm install
+
+    - name: create tmuxrc link
+      ansible.builtin.file:
+        src: "{{ lookup('env', 'HOME') }}/.zplug/repos/bastienbc/dotfiles/.tmux.conf"
+        dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
+        state: link
+      notify: trigger tpm install
+
+- name: Install cli tools
+  hosts: 127.0.0.1
+  environment:
+    GOPATH: "{{ lookup('env','HOME') }}/.go"
+    GHQ_ROOT: "{{ lookup('env','HOME') }}/.ghq"
+  tasks:
+    - name: Install fzf and jq
+      become: yes
+      dnf:
+        name:
+          - fzf
+          - jq
+        state: latest
+
+    - name: Install rust tools
+      ansible.builtin.command: cargo install {{ item }}
+      loop:
+        - watchman
+        - pwatch
+        - du-dust
+        - parallel
+        - bat
+        - xsv
+        - ripgrep
+        - fd-find
+        - watchexec-cli
+        - funzzy
+        - lsd
+        - pueue
+        - pier
+
+    - name: Install go tools
+      ansible.builtin.command: go get -u {{ item }}
+      loop:
+        - github.com/x-motemen/ghq
+
+    - name: Clone fasd
+      ansible.builtin.command: "{{ lookup('env','HOME') }}/.go/bin/ghq get -u -p https://github.com/clvv/fasd"
+
+    - name: build fasd
+      environment:
+        PREFIX: "{{ lookup('env','HOME') }}"
+      make:
+        target: install
+        chdir: "{{ lookup('env','HOME') }}/.ghq/github.com/clvv/fasd"
+
+    - name: Install pip modules
+      ansible.builtin.pip:
+        name: "{{ item }}"
+        executable: pip3
+        extra_args: "--user --upgrade"
+      loop:
+        - awscli
+        - thefuck
+        - mdv#
+#
+
