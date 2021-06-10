@@ -21,8 +21,8 @@ Plugin 'ervandew/screen'                       " Start shell in new tmux pane wi
 Plugin 'fatih/vim-go.git'                      " go support
 Plugin 'glench/vim-jinja2-syntax'              " jinja support
 Plugin 'godlygeek/tabular.git'                 " Format text
-Plugin 'gu-fan/InstantRst'                     " supposedly start rst view in navigator...
-Plugin 'gu-fan/riv.vim'                        " rst support
+" Plugin 'gu-fan/InstantRst'                     " supposedly start rst view in navigator...
+" Plugin 'gu-fan/riv.vim'                        " rst support
 Plugin 'haya14busa/incsearch-easymotion.vim'   " Use EasyMotion with incsearch results
 Plugin 'haya14busa/incsearch.vim'              " Clear incremental search '/'
 Plugin 'honza/vim-snippets'                    " snippets
