@@ -25,6 +25,10 @@ ln = { value = '[ ! -e "${HOME}/bin/{{name}}" ] && ln -s -T {{ file }} "${HOME}/
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
+[plugins.mydotfiles]
+github = "bastienbc/dotfiles"
+dir = "plugins"
+
 [plugins.revolver]
 github = "molovo/revolver"
 apply = [ "ln" ]
@@ -130,10 +134,6 @@ dir = "plugins/zsh_reload"
 
 [plugins.zsh-vi-mode]
 github = "jeffreytse/zsh-vi-mode"
-
-[plugins.mydotfiles]
-github = "bastienbc/dotfiles"
-dir = "plugins"
 
 [plugins.zsh-async]
 github = "mafredri/zsh-async"
