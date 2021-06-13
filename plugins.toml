@@ -25,10 +25,6 @@ ln = { value = '[ ! -e "${HOME}/bin/{{name}}" ] && ln -s -T {{ file }} "${HOME}/
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.mydotfiles]
-github = "bastienbc/dotfiles"
-dir = "plugins"
-
 [plugins.revolver]
 github = "molovo/revolver"
 apply = [ "ln" ]
@@ -104,6 +100,10 @@ dir = "plugins/rsync"
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/transfer"
 
+[plugins.mydotfiles]
+github = "bastienbc/dotfiles"
+dir = "plugins"
+
 [plugins.thefuck]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/thefuck"
@@ -128,12 +128,15 @@ dir = "plugins/helm"
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/zsh-navigation-tools"
 
+[plugins.fzf-search]
+github = "joshskidmore/zsh-fzf-history-search"
+
+[plugins.fzf-fasd]
+github = "wookayin/fzf-fasd"
+
 [plugins.zsh_reload]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/zsh_reload"
-
-[plugins.zsh-vi-mode]
-github = "jeffreytse/zsh-vi-mode"
 
 [plugins.zsh-async]
 github = "mafredri/zsh-async"
