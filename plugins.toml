@@ -124,15 +124,8 @@ dir = "plugins/wd"
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/helm"
 
-[plugins.zsh-navigation-tools]
-github = "ohmyzsh/ohmyzsh"
-dir = "plugins/zsh-navigation-tools"
-
-[plugins.fzf-search]
-github = "joshskidmore/zsh-fzf-history-search"
-
-[plugins.fzf-fasd]
-github = "wookayin/fzf-fasd"
+[plugins.zsh-vi-mode]
+github = "jeffreytse/zsh-vi-mode"
 
 [plugins.zsh_reload]
 github = "ohmyzsh/ohmyzsh"
@@ -161,6 +154,22 @@ github = "b4b4r07/emoji-cli"
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.begin-zvm-after-init]
+inline = 'zvm_after_init() {'
+
+[plugins.zsh-navigation-tools]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/zsh-navigation-tools"
+
+[plugins.fzf-search]
+github = "joshskidmore/zsh-fzf-history-search"
+
+[plugins.end-zvm-after-init]
+inline = '}'
+
+[plugins.fzf-fasd]
+github = "wookayin/fzf-fasd"
 
 [plugins.load-starship]
 inline = 'eval "$(starship init zsh)"'
