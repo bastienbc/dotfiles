@@ -11,6 +11,11 @@ then
 	ln -s "${0:A:h:h}/.rgignore" "${HOME}/.rgignore" >& /dev/null
 fi
 
+if [ ! -f "${HOME}/.rgrc" ]
+then
+	ln -s "${0:A:h:h}/.rgrc" "${HOME}/.rgrc" >& /dev/null
+fi
+
 function vimin0 () {
 	xargs -0 -r sh -c 'vim "$@" < /dev/tty' vim
 }
@@ -20,7 +25,7 @@ function vimin () {
 }
 
 function vimg () {
-	rg -l -0 "$@" | fzf${TMUX:+-tmux} -m -0 -1 --read0 --print0 --bind ctrl-t:toggle-all | vimin0
+	rg --files --hidden --glob "!.git/*" -l -0 "$@" | fzf -m -0 -1 --read0 --print0 --bind ctrl-t:toggle-all --preview "bat --style=numbers --color=always --line-range :500 {}" | vimin0
 }
 
 function wdl () {
@@ -29,7 +34,7 @@ function wdl () {
 }
 
 function vimf() {
-	fd -t f -0 "$@" | fzf${TMUX:+-tmux} -0 -m -1 --read0 --print0 --bind ctrl-t:toggle-all | vimin0
+	fd -t f --hidden --exclude .git -0 "$@" | fzf -0 -m -1 --read0 --print0 --bind ctrl-t:toggle-all --preview "bat --style=numbers --color=always --line-range :500 {}" | vimin0
 }
 
 function vimp() {
@@ -161,4 +166,8 @@ function notif {
 		notify-send -u critical -c Command "Failure" "exit $STATUS: '${COMMAND}'\n$RESULT"
 	fi
 	return $STATUS
+}
+
+function batman {
+	"$@" --help | bat --language man --style full
 }
