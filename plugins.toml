@@ -116,6 +116,10 @@ dir = "plugins/tmux"
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/vundle"
 
+[plugins.fzf]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/fzf"
+
 [plugins.wd]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/wd"
