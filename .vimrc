@@ -117,7 +117,7 @@ set foldmethod=syntax
 
 set cursorline
 if exists('$TMUX')
-	if &term =~ "xterm\\|rxvt"
+	if &term =~ "xterm\\|rxvt\\|screen"
 		let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]12;#af8700\x7\<Esc>\<Esc>[6 q\<Esc>\\"
 		let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]12;#d70000\x7\<Esc>\<Esc>[4 q\<Esc>\\"
 		let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]12;#93a1a1\x7\<Esc>\<Esc>[2 q\<Esc>\\"
