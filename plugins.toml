@@ -40,6 +40,9 @@ github = "mrowa44/emojify"
 apply = [ "ln" ]
 use = [ "emojify" ]
 
+[plugins.no-omz-update]
+inline = 'export DISABLE_AUTO_UPDATE="true"'
+
 [plugins.omz]
 github = "ohmyzsh/ohmyzsh"
 use = [ "oh-my-zsh.sh" ]
