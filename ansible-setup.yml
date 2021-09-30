@@ -205,7 +205,6 @@
         - watchman
         - pwatch
         - du-dust
-        - parallel
         - bat
         - xsv
         - ripgrep
