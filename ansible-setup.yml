@@ -200,7 +200,7 @@
         state: latest
 
     - name: Install rust tools
-      ansible.builtin.command: cargo install {{ item }}
+      ansible.builtin.command: cargo install --locked {{ item }}
       loop:
         - watchman
         - pwatch
