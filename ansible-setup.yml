@@ -38,6 +38,17 @@
           - snapd
         state: latest
 
+    - name: Upgrade all packages
+      become: yes
+      when: update is defined
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: flatpak update
+      ansible.builtin.command: flatpak update --user -y
+      when: update is defined
+
     - name: Use zsh as shell
       become: yes
       user:
@@ -114,6 +125,10 @@
     - name: trigger vundle install
       ansible.builtin.command: vim +PluginInstall +qall
 
+    - name: build ycm
+      ansible.builtin.command: "{{ lookup('env','HOME') }}/.vim/bundle/youcompleteme/install.py --clang-completer --go-completer --rust-completer --ts-completer"
+
+
     - name: trigger tpm install
       ansible.builtin.command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
@@ -162,6 +177,11 @@
         dest: "{{ lookup('env', 'HOME') }}/.vimrc"
         state: link
       notify: trigger vundle install
+
+    - name: Update vim plugins
+      ansible.builtin.command: vim +PluginUpdate +qall
+      when: update is defined
+      notify: build ycm
 
     - name: create vim snippets link
       ansible.builtin.file:
@@ -249,24 +269,7 @@
       loop:
         - helm
         - kubectl
-#
-- name: Update all
-  hosts: 127.0.0.1
-  when: update is defined
-  tasks:
-
-    - name: Update vim plugins
-      ansible.builtin.command: vim +PluginUpdate +qall
-
-    - name: Rebuild ycm
-      ansible.builtin.command: "{{ lookup('env','HOME') }}/.vim/bundle/youcompleteme/install.py --clang-completer --go-completer --rust-completer --ts-completer"
 
     - name: Update sheldon plugins
       ansible.builtin.command: sheldon lock --update
-
-    - name: Update dnf
-      become: yes
-      ansible.builtin.command: dnf update --refresh -y
-
-    - name: flatpak update
-      ansible.builtin.command: flatpak update --user -y
+      when: update is defined
