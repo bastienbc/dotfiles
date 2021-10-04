@@ -250,4 +250,23 @@
         - helm
         - kubectl
 #
+- name: Update all
+  hosts: 127.0.0.1
+  when: update is defined
+  tasks:
 
+    - name: Update vim plugins
+      ansible.builtin.command: vim +PluginUpdate +qall
+
+    - name: Rebuild ycm
+      ansible.builtin.command: "{{ lookup('env','HOME') }}/.vim/bundle/youcompleteme/install.py --clang-completer --go-completer --rust-completer --ts-completer"
+
+    - name: Update sheldon plugins
+      ansible.builtin.command: sheldon lock --update
+
+    - name: Update dnf
+      become: yes
+      ansible.builtin.command: dnf update --refresh -y
+
+    - name: flatpak update
+      ansible.builtin.command: flatpak update --user -y
