@@ -19,6 +19,7 @@
           - perl-Module-Build
           - npm
           - nodejs
+          - openssl-devel
         state: latest
 
     - name: Install zsh, gvim, tmux and alacritty
@@ -27,6 +28,7 @@
         name:
           - zsh
           - gvim
+          - vim-enhanced
           - alacritty
           - tmux
           - starship
