@@ -70,6 +70,10 @@ function setup-update() {
     ansible-playbook -K "$(ghq list -p -e 'bastienbc/dotfiles')/ansible-setup.yml"
 }
 
+function update-all() {
+	ansible-playbook -K "$(ghq list -p -e 'bastienbc/dotfiles')/ansible-setup.yml" -e 'update=1' && flatpak update --user -y
+}
+
 function ghl() {
 	local FOLDER
 	ghq list -p "$1" | fzf --select-1 | read FOLDER
