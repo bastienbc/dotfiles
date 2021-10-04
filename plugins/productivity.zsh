@@ -62,6 +62,14 @@ function ghq-update() {
 	ghq list -e -p | xargs -i{} -n 1 -P 4 -r -- chronic bash -c '(echo -n {} ; git -C {} pull --ff-only)'
 }
 
+function plugins-update() {
+	vundle-update && sheldon lock --update
+}
+
+function setup-update() {
+    ansible-playbook -K "$(ghq list -p -e 'bastienbc/dotfiles')/ansible-setup.yml"
+}
+
 function ghl() {
 	local FOLDER
 	ghq list -p "$1" | fzf --select-1 | read FOLDER
