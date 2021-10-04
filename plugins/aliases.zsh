@@ -12,6 +12,7 @@ if command -v gvim >& /dev/null; then
 	alias vim="gvim -v"
 fi
 alias vimrc="${EDITOR} ${HOME}/.vimrc"
+alias src="omz reload"
 
 
 alias phtml="w3m -dump -T text/html"

@@ -134,10 +134,6 @@ dir = "plugins/helm"
 [plugins.zsh-vi-mode]
 github = "jeffreytse/zsh-vi-mode"
 
-[plugins.zsh_reload]
-github = "ohmyzsh/ohmyzsh"
-dir = "plugins/zsh_reload"
-
 [plugins.zsh-async]
 github = "mafredri/zsh-async"
 
