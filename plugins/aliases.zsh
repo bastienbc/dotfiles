@@ -9,7 +9,7 @@ export VIMRC="${HOME}/.vimrc"
 alias zshrc="${EDITOR} ${ZSHRC} ; src"
 alias szshrc="source ${HOME}/.zshrc"
 if command -v gvim >& /dev/null; then
-	alias vim="gvim -v"
+	alias vim="vimx"
 fi
 alias vimrc="${EDITOR} ${HOME}/.vimrc"
 alias src="omz reload"

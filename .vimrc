@@ -230,3 +230,8 @@ set t_kD=[3~
 
 nmap <leader>sh :ScreenShell<CR>
 nmap <leader>ov :OverCommandLine<CR>
+
+
+let g:opamshare = substitute(system('opam var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
