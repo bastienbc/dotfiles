@@ -183,3 +183,7 @@ function notif {
 function batman {
 	"$@" --help | bat --language man --style full
 }
+
+function gfd {
+	gfold "${GHQ_ROOT}"
+}
