@@ -208,7 +208,7 @@
       notify: trigger tpm install
 
     - name: tpm update
-      ansible.builtin.command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/update_plugins.sh all"
+      ansible.builtin.command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/update_plugin.sh all"
       when: update is defined
 
 - name: Install cli tools
