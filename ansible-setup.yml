@@ -20,6 +20,7 @@
           - npm
           - nodejs
           - openssl-devel
+          - dbus-devel
         state: latest
 
     - name: Install zsh, gvim, tmux and alacritty
