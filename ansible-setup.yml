@@ -46,7 +46,7 @@
         state: latest
 
     - name: flatpak update
-      ansible.builtin.command: flatpak update --user -y
+      ansible.builtin.command: flatpak update --user -y --noninteractive
       when: update is defined
 
     - name: Use zsh as shell
