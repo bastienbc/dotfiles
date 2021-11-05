@@ -249,6 +249,10 @@
         - kdash
         - tickrs
         - xplr
+        - weld
+        - gfold
+        - hck
+        - just
 
     - name: Install go tools
       ansible.builtin.command: go get -u {{ item }}
