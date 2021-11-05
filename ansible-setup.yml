@@ -237,6 +237,7 @@
         - pueue
         - pier
         - sheldon
+        - bottom
 
     - name: Install go tools
       ansible.builtin.command: go get -u {{ item }}
