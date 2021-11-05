@@ -45,3 +45,5 @@ alias la='lsd -Alh'
 alias l='lsd -alh'
 alias ll='lsd -lh'
 alias lt='lsd --tree'
+
+alias b='btm'
