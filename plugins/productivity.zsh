@@ -185,7 +185,7 @@ function batman {
 }
 
 function gfd {
-	cat <<EOF | column | fzf -m | awk '{print $2}' | xargs gfold
+	cat <<EOF | column -t | fzf -m | awk '{print $2}' | xargs gfold
 vim\t"${HOME}/.vim/bundle"
 ghq\t"${GHQ_ROOT}"
 sheldon\t"${HOME}/.local/share/sheldon"
