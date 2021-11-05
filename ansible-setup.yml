@@ -238,6 +238,13 @@
         - pier
         - sheldon
         - bottom
+        - gping
+        - termscp
+        - oha
+        - diskonaut
+        - kdash
+        - tickrs
+        - xplr
 
     - name: Install go tools
       ansible.builtin.command: go get -u {{ item }}
