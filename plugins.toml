@@ -18,10 +18,6 @@ ln = { value = '[ ! -e "${HOME}/bin/{{name}}" ] && ln -s -T {{ file }} "${HOME}/
 
 [plugins]
 
-# For example:
-#
-# [plugins.base16]
-# github = "chriskempson/base16-shell"
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
@@ -66,10 +62,6 @@ dir = "plugins/colorize"
 [plugins.cp]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins/cp"
-
-[plugins.fasd]
-github = "ohmyzsh/ohmyzsh"
-dir = "plugins/fasd"
 
 [plugins.git]
 github = "ohmyzsh/ohmyzsh"
@@ -171,8 +163,11 @@ github = "joshskidmore/zsh-fzf-history-search"
 [plugins.end-zvm-after-init]
 inline = '}'
 
-[plugins.fzf-fasd]
-github = "wookayin/fzf-fasd"
+[plugins.zsh-autocomplete]
+github = "marlonrichert/zsh-autocomplete"
+
+[plugins.zoxide]
+inline = 'eval "$(zoxide init zsh)"'
 
 [plugins.load-starship]
 inline = 'eval "$(starship init zsh)"'

@@ -252,21 +252,12 @@
         - gfold
         - hck
         - just
+        - zoxide
 
     - name: Install go tools
       ansible.builtin.command: go get -u {{ item }}
       loop:
         - github.com/x-motemen/ghq
-
-    - name: Clone fasd
-      ansible.builtin.command: "{{ lookup('env','HOME') }}/.go/bin/ghq get -u -p https://github.com/clvv/fasd"
-
-    - name: build fasd
-      environment:
-        PREFIX: "{{ lookup('env','HOME') }}"
-      make:
-        target: install
-        chdir: "{{ lookup('env','HOME') }}/.ghq/github.com/clvv/fasd"
 
     - name: Install pip modules
       ansible.builtin.pip:
