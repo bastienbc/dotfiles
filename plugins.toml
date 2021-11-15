@@ -163,11 +163,14 @@ github = "joshskidmore/zsh-fzf-history-search"
 [plugins.end-zvm-after-init]
 inline = '}'
 
-[plugins.zsh-autocomplete]
-github = "marlonrichert/zsh-autocomplete"
-
 [plugins.zoxide]
 inline = 'eval "$(zoxide init zsh)"'
+
+[plugins.zsh-autocomplete-setup]
+inline = "zstyle ':autocomplete:*' recent-dirs zoxide; zstyle ':autocomplete:*' insert-unambiguous yes; zstyle ':autocomplete:*' widget-style menu-select; zstyle ':autocomplete:*' fzf-completion yes"
+
+[plugins.zsh-autocomplete]
+github = "marlonrichert/zsh-autocomplete"
 
 [plugins.load-starship]
 inline = 'eval "$(starship init zsh)"'
