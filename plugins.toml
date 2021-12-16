@@ -14,7 +14,7 @@ shell = "zsh"
 
 [templates]
 defer = { value = 'zsh-defer source "{{ file }}"', each = true }
-ln = { value = '[ ! -e "${HOME}/bin/{{name}}" ] && ln -s -T {{ file }} "${HOME}/bin/{{ name }}"', each = true }
+ln = { value = '[ ! -e "${HOME}/bin/{{name}}" ] && mkdir "${HOME}/bin" && ln -s -T {{ file }} "${HOME}/bin/{{ name }}"', each = true }
 
 [plugins]
 
