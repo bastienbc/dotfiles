@@ -258,6 +258,7 @@
       ansible.builtin.command: go get -u {{ item }}
       loop:
         - github.com/x-motemen/ghq
+        - github.com/leopardslab/dunner
 
     - name: Install pip modules
       ansible.builtin.pip:
