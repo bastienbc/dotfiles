@@ -8,7 +8,7 @@ export ZSHRC="${HOME}/.zshrc"
 export VIMRC="${HOME}/.vimrc"
 alias zshrc="${EDITOR} ${ZSHRC} ; src"
 alias szshrc="source ${HOME}/.zshrc"
-if command -v gvim >& /dev/null; then
+if command -v vimx >& /dev/null; then
 	alias vim="vimx"
 fi
 alias vimrc="${EDITOR} ${HOME}/.vimrc"

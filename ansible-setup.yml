@@ -2,8 +2,9 @@
 - name: Setup "Dev" tools
   hosts: 127.0.0.1
   tasks:
-    - name: Install compilers for golang, rust and gcc
+    - name: Install compilers for golang, rust and gcc [RedHat]
       become: yes
+      when: ansible_facts['os_family'] == "RedHat"
       dnf:
         name:
           - gcc
@@ -23,8 +24,32 @@
           - dbus-devel
         state: latest
 
-    - name: Install zsh, gvim, tmux and alacritty
+    - name: Install compilers for golang, rust and gcc [Debian]
       become: yes
+      when: ansible_facts['os_family'] == "Debian"
+      apt:
+        name:
+          - gcc
+          - g++
+          - clang
+          - golang
+          - cargo
+          - rustc
+          - cmake
+          - python3-pip
+          - python3-dev
+          - cpanminus
+          - libmodule-build-perl
+          - npm
+          - nodejs
+          - libssl-dev
+          - libdbus-1-dev
+        state: latest
+
+
+    - name: Install zsh, gvim, tmux and alacritty [RedHat]
+      become: yes
+      when: ansible_facts['os_family'] == "RedHat"
       dnf:
         name:
           - zsh
@@ -37,27 +62,54 @@
           - yank
           - xsel
           - snapd
+          - fzf
+          - jq
         state: latest
 
-    - name: Upgrade all packages
+    - name: Install zsh, gvim, tmux [Debian]
       become: yes
-      when: update is defined
+      when: ansible_facts['os_family'] == "Debian"
+      apt:
+        name:
+          - zsh
+          - vim-athena
+          - tmux
+          - moreutils
+          - yank
+          - xsel
+          - snapd
+          - fzf
+          - jq
+        state: latest
+
+    - name: Upgrade all packages [RedHat]
+      become: yes
+      when: update is defined and ansible_facts['os_family'] == "RedHat"
       dnf:
         name: "*"
         state: latest
 
+    - name: Upgrade all packages [Debian]
+      become: yes
+      when: update is defined and ansible_facts['os_family'] == "Debian"
+      apt:
+        name: "*"
+        state: latest
+
     - name: flatpak update
-      ansible.builtin.command: flatpak update --user -y --noninteractive
-      when: update is defined
+      command: flatpak update --user -y --noninteractive
+      when: update is defined and ansible_facts['os_family'] == "RedHat"
 
     - name: Use zsh as shell
       become: yes
+      when: ansible_facts['os_family'] == "RedHat"
       user:
         name: "{{ lookup( 'env', 'USER' ) }}"
         shell: /usr/bin/zsh
 
     - name: create snapd link
       become: yes
+      when: ansible_facts['os_family'] == "RedHat"
       ansible.builtin.file:
         src: "/var/lib/snapd/snap"
         dest: "/snap"
@@ -67,7 +119,7 @@
   hosts: 127.0.0.1
   handlers:
     - name: Refresh share font cache
-      ansible.builtin.command: fc-cache -vf {{ lookup('env', 'HOME') }}/.local/share/fonts | quote }}
+      command: fc-cache -vf {{ lookup('env', 'HOME') }}/.local/share/fonts | quote }}
 
   tasks:
     - name: Create directory share fonts
@@ -124,13 +176,13 @@
   hosts: 127.0.0.1
   handlers:
     - name: trigger vundle install
-      ansible.builtin.command: vim +PluginInstall +qall
+      command: vim +PluginInstall +qall
 
     - name: build ycm
-      ansible.builtin.command: "{{ lookup('env','HOME') }}/.vim/bundle/youcompleteme/install.py --clang-completer --go-completer --rust-completer --ts-completer"
+      command: "{{ lookup('env','HOME') }}/.vim/bundle/youcompleteme/install.py --clang-completer --go-completer --rust-completer --ts-completer"
 
     - name: trigger tpm install
-      ansible.builtin.command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/install_plugins.sh"
+      command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
   tasks:
     - name: create alacritty configuration directory
@@ -179,7 +231,7 @@
       notify: trigger vundle install
 
     - name: Update vim plugins
-      ansible.builtin.command: vim +PluginUpdate +qall
+      command: vim +PluginUpdate +qall
       when: update is defined
       notify: build ycm
 
@@ -208,7 +260,7 @@
       notify: trigger tpm install
 
     - name: tpm update
-      ansible.builtin.command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/update_plugin.sh all"
+      command: "{{ lookup('env', 'HOME') }}/.tmux/plugins/tpm/scripts/update_plugin.sh all"
       when: update is defined
 
 - name: Install cli tools
@@ -217,16 +269,8 @@
     GOPATH: "{{ lookup('env','HOME') }}/.go"
     GHQ_ROOT: "{{ lookup('env','HOME') }}/.ghq"
   tasks:
-    - name: Install fzf and jq
-      become: yes
-      dnf:
-        name:
-          - fzf
-          - jq
-        state: latest
-
     - name: Install rust tools
-      ansible.builtin.command: cargo install --locked {{ item }}
+      command: cargo install --locked {{ item }}
       loop:
         - watchman
         - pwatch
@@ -235,18 +279,18 @@
         - xsv
         - ripgrep
         - fd-find
-        - watchexec-cli
+          # - watchexec-cli
         - funzzy
         - lsd
-        - pueue
+          # - pueue
         - pier
         - sheldon
         - bottom
-        - gping
+          # - gping
         - termscp
         - oha
         - diskonaut
-        - kdash
+          #  - kdash
         - tickrs
         - xplr
         - gfold
@@ -255,7 +299,7 @@
         - zoxide
 
     - name: Install go tools
-      ansible.builtin.command: go get -u {{ item }}
+      command: go get -u {{ item }}
       loop:
         - github.com/x-motemen/ghq
 
@@ -271,11 +315,11 @@
 
     - name: Install snap tools
       become: yes
-      ansible.builtin.command: "snap install --classic {{ item }}"
+      command: "snap install --classic {{ item }}"
       loop:
         - helm
         - kubectl
 
     - name: Update sheldon plugins
-      ansible.builtin.command: sheldon lock --update
+      command: sheldon lock --update
       when: update is defined
