@@ -116,6 +116,10 @@ function kgz {
 	kubectl get pods | fzf --header-lines=1 --select-1 -m --bind ctrl-t:toggle-all | awk '{print $1;}'
 }
 
+function kd {
+	xargs -n 1 kubectl get "$1" -o=yaml | bat -l yaml
+}
+
 function kgzec {
 	local SECRETS=$(kubectl get secrets | fzf --header-lines=1 --select-1 -m --bind ctrl-t:toggle-all | awk '{print $1;}' | xargs -n 1 -I{} -r kubectl get secrets {} -o json | jq -s 'reduce .[] as $x ( {}; . * $x.data )')
 	jq -r 'keys[]' <<< "${SECRETS}" | fzf --select-1 -m --bind ctrl-t:toggle-all | \
@@ -144,6 +148,10 @@ function kpfz {
 
 function kgpdb0 {
 	kubectl get pdb --all-namespaces | awk ' NR==1 {print $0; } NR > 1 && $5 == 0 { print $0; }'
+}
+
+function kcnz {
+	kubectl get namespaces | awk '{print $1}' | fzf --header-lines=1 | xargs kubectl config set-context --current --namespace
 }
 
 function drmc {
