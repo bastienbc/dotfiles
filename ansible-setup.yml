@@ -33,8 +33,6 @@
           - g++
           - clang
           - golang
-          - cargo
-          - rustc
           - cmake
           - python3-pip
           - python3-dev
@@ -279,18 +277,18 @@
         - xsv
         - ripgrep
         - fd-find
-          # - watchexec-cli
+        - watchexec-cli
         - funzzy
         - lsd
-          # - pueue
+        - pueue
         - pier
         - sheldon
         - bottom
-          # - gping
+        - gping
         - termscp
         - oha
         - diskonaut
-          #  - kdash
+        - kdash
         - tickrs
         - xplr
         - gfold
