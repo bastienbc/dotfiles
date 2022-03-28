@@ -37,6 +37,7 @@ export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
 alias yank='yank-cli'
 
+alias wm='watchman'
 alias wms='wm show'
 alias wmf='wm fix'
 
@@ -47,3 +48,10 @@ alias ll='lsd -lh'
 alias lt='lsd --tree'
 
 alias b='btm'
+
+alias p='pueue'
+alias pl='pueue log'
+alias pa='pueue add'
+alias pst='pueue status'
+alias pc='pueue clean --successful-only'
+alias pca='pueue clean'
