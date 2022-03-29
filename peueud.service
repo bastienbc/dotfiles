@@ -1,0 +1,9 @@
+[Unit]
+Description=pueue daemon
+
+[Service]
+Type=simple
+ExecStart=/home/bbarbecreuly/.cargo/bin/pueued
+
+[Install]
+WantedBy=default.target

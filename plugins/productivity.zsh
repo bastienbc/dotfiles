@@ -189,7 +189,7 @@ function notif {
 }
 
 function batman {
-	"$@" --help | bat --language man --style full
+	"$@" --help 2>&1 | bat --language man --style plain
 }
 
 function gfd {
