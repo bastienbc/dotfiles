@@ -26,6 +26,9 @@ alias gplt='git push origin $(gtc | first)'
 alias gff='git pull --ff-only'
 alias imgv='w3m -o ext_image_viewer=0'
 
+alias ktp='kubectl top pods'
+alias kub='kubectl'
+
 alias first="head -n 1"
 
 alias ct='bat --style plain'
