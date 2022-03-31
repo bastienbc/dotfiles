@@ -199,3 +199,7 @@ ghq "${GHQ_ROOT}"
 sheldon "${HOME}/.local/share/sheldon"
 EOF
 }
+
+function pierz {
+	pier list -q | fzf | xargs -r -n 1 pier run
+}
