@@ -201,5 +201,5 @@ EOF
 }
 
 function pierz {
-	pier list -q | fzf | xargs -r -n 1 pier run
+	pier list -q | fzf | xargs -I{} -r -n 1 pier run {} "$@"
 }
