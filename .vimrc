@@ -150,6 +150,8 @@ let mapleader=","
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:webdevicons_enable_airline_statusline = 1
 nmap <F9> :TagbarToggle<CR>
 nmap <leader>tg :TagbarToggle<CR>
 nmap <leader>tr :NERDTreeToggle<CR>
@@ -187,7 +189,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:airline#extensions#hunks#enabled = 1
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 
