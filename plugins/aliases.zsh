@@ -11,6 +11,7 @@ alias szshrc="source ${HOME}/.zshrc"
 if command -v vimx >& /dev/null; then
 	alias vim="vimx"
 fi
+alias nix="vim -X"
 alias vimrc="${EDITOR} ${HOME}/.vimrc"
 alias src="omz reload"
 
