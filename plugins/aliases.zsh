@@ -33,6 +33,7 @@ alias kub='kubectl'
 alias first="head -n 1"
 
 alias ct='bat --style plain'
+alias cty='bat --style plain -l yaml'
 alias ka='k -Ah'
 
 alias t='terraform'
