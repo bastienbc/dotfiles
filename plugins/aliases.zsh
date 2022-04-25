@@ -25,6 +25,7 @@ alias glof="git log --follow -p --"
 alias gtc="git tag --sort=-creatordate"
 alias gplt='git push origin $(gtc | first)'
 alias gff='git pull --ff-only'
+alias gdl='git diff --minimal -U0 -w --no-prefix --word-diff'
 alias imgv='w3m -o ext_image_viewer=0'
 
 alias ktp='kubectl top pods'
